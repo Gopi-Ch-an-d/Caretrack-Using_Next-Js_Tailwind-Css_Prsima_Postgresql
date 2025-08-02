@@ -3,7 +3,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
-export async function GET(_req: NextRequest) {  // Prefix with _ to indicate intentional non-use
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(_req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
     
@@ -28,7 +29,7 @@ export async function GET(_req: NextRequest) {  // Prefix with _ to indicate int
   }
 }
 
-export async function PUT(req: NextRequest) {  // We actually use req here
+export async function PUT(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
     
