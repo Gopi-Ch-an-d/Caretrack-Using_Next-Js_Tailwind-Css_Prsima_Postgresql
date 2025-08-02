@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {  // Prefix with _ to indicate intentional non-use
   try {
     const session = await getServerSession(authOptions)
     
@@ -25,12 +25,13 @@ export async function GET(req: NextRequest) {
     })
 
     return NextResponse.json(healthRecords)
-  } catch (error) {
+  } catch (err) {
+    console.error('Error fetching health records:', err)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  // We actually use req here
   try {
     const session = await getServerSession(authOptions)
     
@@ -73,7 +74,8 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json(healthRecord)
-  } catch (error) {
+  } catch (err) {
+    console.error('Error creating health record:', err)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }

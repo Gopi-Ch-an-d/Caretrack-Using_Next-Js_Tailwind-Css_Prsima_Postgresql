@@ -130,7 +130,7 @@ export default function DashboardPage() {
             Welcome back, {session.user?.name?.split(' ')[0] || 'User'}!
           </h2>
           <p className="text-sm sm:text-base text-gray-600">
-            Here's an overview of your health journey today.
+            Here&apos;s an overview of your health journey today.
           </p>
         </div>
 
@@ -266,7 +266,7 @@ export default function DashboardPage() {
             {/* Health Tips */}
             <Card>
               <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="text-lg">Today's Health Tip</CardTitle>
+                <CardTitle className="text-lg">Today&apos;s Health Tip</CardTitle>
               </CardHeader>
               <CardContent className="p-4 sm:p-6 pt-0">
                 <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-3 sm:p-4 rounded-lg">

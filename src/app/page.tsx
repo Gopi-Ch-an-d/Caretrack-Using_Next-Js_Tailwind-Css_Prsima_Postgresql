@@ -1,16 +1,67 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Heart, Shield, Users, ChevronRight, Menu, X, Star, Check, ArrowRight, Play, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Sparkles, TrendingUp, Award, ArrowLeft, ArrowUp, ArrowDown, HeartPulse, BellRing } from 'lucide-react';
+import { useState, useEffect, JSX } from 'react';
 import Link from 'next/link';
-import { Calendar, Pill, CheckCircle } from "lucide-react";
+import Image from 'next/image';
+import { 
+  Heart, 
+  Shield, 
+  Users, 
+  Menu, 
+  X, 
+  Star, 
+  Check, 
+  ArrowRight, 
+  Play, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Linkedin, 
+  Sparkles, 
+  HeartPulse, 
+  BellRing,
+  Calendar,
+  Pill,
+  CheckCircle
+} from 'lucide-react';
+
+interface PricingPlan {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  buttonText: string;
+  popular: boolean;
+  color: string;
+  gradient: string;
+}
+
+interface Service {
+  title: string;
+  description: string;
+  image: string;
+  icon: JSX.Element;
+  features: string[];
+  additionalContent: string;
+}
+
+interface Testimonial {
+  name: string;
+  role: string;
+  image: string;
+  content: string;
+  rating: number;
+}
 
 const CareTrackApp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState({ users: 0, uptime: 0, rating: 0 });
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState('');
   const [expandedService, setExpandedService] = useState<number | null>(null);
   const [expandedPlans, setExpandedPlans] = useState<Record<number, boolean>>({});
   const [showMissionInfo, setShowMissionInfo] = useState(false);
@@ -41,27 +92,6 @@ const CareTrackApp = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Animate stats on component mount
-  useEffect(() => {
-    const animateValue = (start: number, end: number, duration: number, setter: { (val: any): void; (val: any): void; (val: any): void; (arg0: number): void; }) => {
-      const startTime = Date.now();
-      const timer = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const current = Math.floor(start + (end - start) * progress);
-        setter(current);
-
-        if (progress === 1) clearInterval(timer);
-      }, 16);
-    };
-
-    setTimeout(() => {
-      animateValue(0, 10, 2000, (val) => setAnimatedStats(prev => ({ ...prev, users: val })));
-      animateValue(0, 99.9, 2000, (val) => setAnimatedStats(prev => ({ ...prev, uptime: val })));
-      animateValue(0, 4.9, 2000, (val) => setAnimatedStats(prev => ({ ...prev, rating: val })));
-    }, 500);
-  }, []);
-
   const togglePlan = (index: number) => {
     setExpandedPlans(prev => ({
       ...prev,
@@ -82,7 +112,7 @@ const CareTrackApp = () => {
     'https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe'
   ];
 
-  const pricingPlans = [
+  const pricingPlans: PricingPlan[] = [
     {
       name: 'Basic',
       price: 'Free',
@@ -141,7 +171,7 @@ const CareTrackApp = () => {
     }
   ];
 
-  const services = [
+  const services: Service[] = [
     {
       title: "Personal Health Records",
       description: "Securely store and access all your medical history in one place, available anytime, anywhere.",
@@ -222,7 +252,7 @@ const CareTrackApp = () => {
     }
   ];
 
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       name: "Dr. Sarah Johnson",
       role: "Cardiologist",
@@ -251,10 +281,6 @@ const CareTrackApp = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const openDemoVideo = () => {
-    window.open('https://video.pictory.ai/v2/preview/1036199616980717716971754051810656', '_blank');
   };
 
   return (
@@ -314,6 +340,7 @@ const CareTrackApp = () => {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-700 hover:text-blue-600 transition-colors"
+                aria-label="Toggle menu"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -379,14 +406,14 @@ const CareTrackApp = () => {
           </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in-up">
-              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Your Health,
                 <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x">
                   Simplified
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 leading-relaxed animate-slide-in-right">
+              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed animate-slide-in-right">
                 CareTrack powered by Sthiram revolutionizes healthcare management.
                 Track, analyze, and improve your health journey with our comprehensive platform.
               </p>
@@ -394,14 +421,14 @@ const CareTrackApp = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/signup"
-                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2 inline-block group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/videos/First_Starting_Caretrack_Powered_by_Sthiram__1..mp4"
-                  className="flex items-center justify-center bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg border border-gray-300 hover:border-gray-400 transition-all transform hover:scale-105 shadow-lg"
+                  className="flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg border border-gray-300 hover:border-gray-400 transition-all transform hover:scale-105 shadow-lg"
                 >
                   <Play className="w-5 h-5 mr-2 text-blue-600" />
                   Watch Demo
@@ -410,18 +437,18 @@ const CareTrackApp = () => {
             </div>
 
             {/* Doctor Image Section - Fixed */}
-            <div className="relative animate-fade-in-up delay-500">
-              <div className="relative z-10 rounded-3xl shadow-2xl overflow-hidden w-full h-[500px] transform hover:scale-105 transition-all duration-500">
-                <img
+            <div className="relative animate-fade-in-up delay-500 mt-10 lg:mt-0">
+              <div className="relative z-10 rounded-3xl shadow-2xl overflow-hidden w-full h-[400px] sm:h-[500px] transform hover:scale-105 transition-all duration-500">
+                <Image
                   src="https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg"
                   alt="Doctor using CareTrack"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://via.placeholder.com/400x500?text=Doctor+Image';
-                  }}
+                  priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <h3 className="text-white font-semibold text-xl">Trusted by healthcare professionals worldwide</h3>
+                  <h3 className="text-white font-semibold text-lg sm:text-xl">Trusted by healthcare professionals worldwide</h3>
                   <p className="text-blue-200 mt-1">Dr. Sarah Johnson, Cardiologist</p>
                 </div>
               </div>
@@ -435,18 +462,20 @@ const CareTrackApp = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="relative order-2 md:order-1">
               {/* Image Carousel */}
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl h-96">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl h-64 sm:h-80 md:h-96">
                 <div className="relative w-full h-full">
                   {aboutImages.map((image, index) => (
-                    <img
+                    <Image
                       key={index}
                       src={image}
                       alt={`Healthcare image ${index + 1}`}
+                      width={800}
+                      height={600}
                       className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
                       style={{
                         animation: `fadeInOut 21s infinite`,
@@ -459,16 +488,16 @@ const CareTrackApp = () => {
               <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 animate-pulse"></div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+            <div className="space-y-4 sm:space-y-6 order-1 md:order-2">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
                 About CareTrack
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-lg sm:text-xl text-gray-600">
                 CareTrack is a revolutionary healthcare management platform designed to empower patients and healthcare providers with seamless health tracking and data management.
               </p>
 
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
                       <Heart className="w-5 h-5 text-blue-600" />
@@ -480,7 +509,7 @@ const CareTrackApp = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
                       <Shield className="w-5 h-5 text-blue-600" />
@@ -492,7 +521,7 @@ const CareTrackApp = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
                       <Users className="w-5 h-5 text-blue-600" />
@@ -514,10 +543,10 @@ const CareTrackApp = () => {
               </button>
 
               {showMissionInfo && (
-                <div className="mt-6 p-6 bg-blue-50 rounded-xl border border-blue-100 animate-fade-in">
+                <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-100 animate-fade-in">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Mission</h3>
                   <p className="text-gray-700 mb-3">
-                    At CareTrack, we're on a mission to revolutionize healthcare management by providing a comprehensive, user-friendly platform that puts patients in control of their health data.
+                    At CareTrack, we&apos;re on a mission to revolutionize healthcare management by providing a comprehensive, user-friendly platform that puts patients in control of their health data.
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
@@ -537,7 +566,7 @@ const CareTrackApp = () => {
                       <span>Make healthcare management accessible to everyone, regardless of technical expertise</span>
                     </li>
                   </ul>
-                  <div className="mt-4 pt-4 border-t border-blue-100">
+                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-blue-100">
                     <p className="text-gray-700">
                       Founded in 2023, CareTrack has already helped over 10,000 users take control of their healthcare journey.
                     </p>
@@ -549,36 +578,37 @@ const CareTrackApp = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Why Choose CareTrack?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive healthcare platform provides everything you need to manage your health effectively.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => {
-              const initialFeaturesToShow = 2; // Show first 2 features by default
+              const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
               const hiddenFeaturesCount = totalFeatures - initialFeaturesToShow;
 
               return (
                 <div key={index} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
+                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                    <Image
                       src={service.image}
                       alt={service.title}
+                      width={600}
+                      height={400}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
 
-                  <div className="p-8">
+                  <div className="p-6 sm:p-8">
                     <div className="flex items-center mb-4">
                       <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                         {service.title}
@@ -587,8 +617,7 @@ const CareTrackApp = () => {
 
                     <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
 
-                    <ul className="space-y-2 mb-6">
-                      {/* Always show first 2 features */}
+                    <ul className="space-y-2 mb-4 sm:mb-6">
                       {service.features.slice(0, initialFeaturesToShow).map((feature, i) => (
                         <li key={i} className="flex items-center">
                           <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
@@ -596,7 +625,6 @@ const CareTrackApp = () => {
                         </li>
                       ))}
 
-                      {/* Show remaining features when expanded */}
                       {expandedService === index && service.features.slice(initialFeaturesToShow).map((feature, i) => (
                         <li key={i + initialFeaturesToShow} className="flex items-center animate-fade-in">
                           <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
@@ -604,7 +632,6 @@ const CareTrackApp = () => {
                         </li>
                       ))}
 
-                      {/* Show "+X more" or "Show less" button */}
                       {hiddenFeaturesCount > 0 && (
                         <button
                           onClick={() => toggleService(index)}
@@ -614,9 +641,8 @@ const CareTrackApp = () => {
                         </button>
                       )}
 
-                      {/* Show additional content when expanded */}
                       {expandedService === index && service.additionalContent && (
-                        <div className="mt-4 pt-4 border-t border-gray-100 animate-fade-in">
+                        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 animate-fade-in">
                           <p className="text-gray-600">{service.additionalContent}</p>
                         </div>
                       )}
@@ -630,60 +656,58 @@ const CareTrackApp = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-12 bg-gray-50">
+      <section id="pricing" className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Choose Your Plan
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Select the perfect plan for your healthcare needs. Upgrade or downgrade anytime.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {pricingPlans.map((plan, index) => (
-              <div key={index} className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 scale-105 shadow-2xl' : 'border-gray-200'} rounded-3xl p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group`}>
+              <div key={index} className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 lg:scale-105 shadow-xl' : 'border-gray-200'} rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold animate-pulse">
+                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
                       Most Popular
                     </div>
                   </div>
                 )}
 
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform">
                     {plan.name}
                   </h3>
-                  <div className="mb-3">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                  <div className="mb-2 sm:mb-3">
+                    <span className="text-3xl sm:text-4xl font-bold text-gray-900">{plan.price}</span>
                     <span className="text-gray-600">{plan.period}</span>
                   </div>
                   <p className="text-gray-600">{plan.description}</p>
                 </div>
 
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.slice(0, 4).map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3 group/item">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
+                    <li key={featureIndex} className="flex items-center space-x-2 sm:space-x-3 group/item">
+                      <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                      <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
                     </li>
                   ))}
 
-                  {/* Show remaining features when expanded */}
                   {expandedPlans[index] && plan.features.slice(4).map((feature, featureIndex) => (
-                    <li key={featureIndex + 4} className="flex items-center space-x-3 group/item">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
+                    <li key={featureIndex + 4} className="flex items-center space-x-2 sm:space-x-3 group/item">
+                      <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                      <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
                     </li>
                   ))}
 
-                  {/* Show "+X more" button if there are more features */}
                   {plan.features.length > 4 && (
                     <button
                       onClick={() => togglePlan(index)}
-                      className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-2 flex items-center"
+                      className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center"
                     >
                       {expandedPlans[index] ? 'Show less' : `+${plan.features.length - 4} more`}
                     </button>
@@ -692,7 +716,7 @@ const CareTrackApp = () => {
 
                 <Link
                   href="/signup"
-                  className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${plan.popular
+                  className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ${plan.popular
                     ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
                     : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
                     }`}
@@ -703,21 +727,21 @@ const CareTrackApp = () => {
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <p className="text-gray-600 mb-3">
+          <div className="text-center mt-6 sm:mt-8">
+            <p className="text-gray-600 mb-2 sm:mb-3">
               All plans include 30-day money-back guarantee
             </p>
-            <div className="flex justify-center items-center space-x-6 text-sm text-gray-500">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
               <span className="flex items-center">
-                <Check className="w-4 h-4 mr-1 text-green-500" />
+                <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
                 No setup fees
               </span>
               <span className="flex items-center">
-                <Check className="w-4 h-4 mr-1 text-green-500" />
+                <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
                 Cancel anytime
               </span>
               <span className="flex items-center">
-                <Check className="w-4 h-4 mr-1 text-green-500" />
+                <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
                 24/7 support
               </span>
             </div>
@@ -726,35 +750,37 @@ const CareTrackApp = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               What Our Users Say
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Join thousands of satisfied users who trust CareTrack for their healthcare management.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group">
-                <div className="flex items-center mb-4">
+              <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group">
+                <div className="flex items-center mb-3 sm:mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-700 italic mb-6">"{testimonial.content}"</p>
+                <p className="text-gray-700 italic mb-4 sm:mb-6">&quot;{testimonial.content}&quot;</p>
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
+                    width={48}
+                    height={48}
+                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full object-cover mr-3 sm:mr-4"
                   />
                   <div>
                     <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="text-xs sm:text-sm text-gray-600">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
@@ -764,24 +790,24 @@ const CareTrackApp = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 relative">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-600 to-purple-600 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             Ready to Transform Your Healthcare Experience?
           </h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-6 sm:mb-8">
             Join thousands of users who have already taken control of their health journey with CareTrack.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link
               href="/signup"
-              className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Get Started Free
             </Link>
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all transform hover:scale-105"
+              className="bg-transparent border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all transform hover:scale-105"
             >
               Contact Sales
             </button>
@@ -791,12 +817,13 @@ const CareTrackApp = () => {
         {/* Compact Contact Sales Modal */}
         {isContactModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl max-w-md w-full max-h-[80vh] overflow-y-auto p-6 animate-fade-in">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-gray-900">Healthcare Solutions</h3>
+            <div className="bg-white rounded-xl max-w-md w-full max-h-[80vh] overflow-y-auto p-4 sm:p-6 animate-fade-in">
+              <div className="flex justify-between items-start mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">Healthcare Solutions</h3>
                 <button
                   onClick={() => setIsContactModalOpen(false)}
                   className="text-gray-400 hover:text-gray-600"
+                  aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -845,29 +872,30 @@ const CareTrackApp = () => {
                 </button>
               </form>
 
-              <div className="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-600">
+              <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200 text-xs text-gray-600">
                 <p>Prefer to call? <a href="tel:+18005551234" className="text-blue-600">+1 (800) 555-1234</a></p>
               </div>
             </div>
           </div>
         )}
       </section>
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Get In Touch
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8">
                 Have questions or need assistance? Our team is here to help you with any inquiries.
               </p>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
-                    <Phone className="w-6 h-6 text-blue-600" />
+                    <Phone className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
@@ -875,9 +903,9 @@ const CareTrackApp = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
-                    <Mail className="w-6 h-6 text-blue-600" />
+                    <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Email</h4>
@@ -885,9 +913,9 @@ const CareTrackApp = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start space-x-3 sm:space-x-4">
                   <div className="mt-1">
-                    <MapPin className="w-6 h-6 text-blue-600" />
+                    <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Address</h4>
@@ -896,31 +924,31 @@ const CareTrackApp = () => {
                 </div>
               </div>
 
-              <div className="flex space-x-4 mt-8">
-                <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
-                  <Facebook className="w-5 h-5" />
+              <div className="flex space-x-3 sm:space-x-4 mt-6 sm:mt-8">
+                <a href="#" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
+                  <Facebook className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
-                  <Twitter className="w-5 h-5" />
+                <a href="#" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
+                  <Twitter className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
-                  <Instagram className="w-5 h-5" />
+                <a href="#" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
+                  <Instagram className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
-                  <Linkedin className="w-5 h-5" />
+                <a href="#" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
+                  <Linkedin className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h3>
-              <form className="space-y-6">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Send us a message</h3>
+              <form className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Your name"
                   />
                 </div>
@@ -929,7 +957,7 @@ const CareTrackApp = () => {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -938,7 +966,7 @@ const CareTrackApp = () => {
                   <input
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Subject"
                   />
                 </div>
@@ -949,13 +977,13 @@ const CareTrackApp = () => {
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Your message"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 sm:py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105"
                 >
                   Send Message
                 </button>
@@ -966,67 +994,67 @@ const CareTrackApp = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-900 text-white py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                <li><a href="#home" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-                <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                <li><a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Navigation</h3>
+              <ul className="space-y-1 sm:space-y-2">
+                <li><a href="#home" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Home</a></li>
+                <li><a href="#about" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">About</a></li>
+                <li><a href="#services" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Services</a></li>
+                <li><a href="#pricing" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Pricing</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Healthcare Services</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Medical Records</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Appointment Booking</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Medication Tracker</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Telehealth Services</a></li>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Healthcare Services</h3>
+              <ul className="space-y-1 sm:space-y-2">
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Medical Records</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Appointment Booking</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Medication Tracker</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Telehealth Services</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Health Resources</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Patient Education</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Wellness Tips</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Chronic Condition Guides</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Preventive Care</a></li>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Health Resources</h3>
+              <ul className="space-y-1 sm:space-y-2">
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Patient Education</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Wellness Tips</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Chronic Condition Guides</a></li>
+                <li><a href="#" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors">Preventive Care</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Stay Connected</h3>
-              <p className="text-gray-400 mb-4">Get health tips and updates</p>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Stay Connected</h3>
+              <p className="text-sm sm:text-base text-gray-400 mb-3 sm:mb-4">Get health tips and updates</p>
               <form className="flex">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="px-4 py-2 rounded-l-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                  className="px-3 sm:px-4 py-2 rounded-l-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-sm sm:text-base"
                 />
                 <button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg transition-colors"
+                  className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-r-lg transition-colors text-sm sm:text-base"
                 >
                   Subscribe
                 </button>
               </form>
-              <div className="flex space-x-4 mt-4">
+              <div className="flex space-x-3 sm:space-x-4 mt-3 sm:mt-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Facebook className="w-5 h-5" />
+                  <Facebook className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Twitter className="w-5 h-5" />
+                  <Twitter className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-4 sm:w-5 h-4 sm:h-5" />
                 </a>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+          <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 sm:mb-0">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <Heart className="w-4 h-4 text-white" />
               </div>
@@ -1035,7 +1063,7 @@ const CareTrackApp = () => {
                 <div className="text-xs text-gray-500">Your Health, Simplified</div>
               </div>
             </div>
-            <div className="text-gray-500 text-sm">
+            <div className="text-gray-500 text-xs sm:text-sm">
               © {new Date().getFullYear()} CareTrack Health Solutions. All rights reserved.
             </div>
           </div>

@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {  // Prefix with _ to indicate intentional non-use
   try {
     const session = await getServerSession(authOptions)
     
@@ -22,12 +22,13 @@ export async function GET(req: NextRequest) {
     })
 
     return NextResponse.json(user)
-  } catch (error) {
+  } catch (err) {
+    console.error('Error fetching user data:', err)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
 
-export async function PUT(req: NextRequest) {
+export async function PUT(req: NextRequest) {  // We actually use req here
   try {
     const session = await getServerSession(authOptions)
     
@@ -44,7 +45,8 @@ export async function PUT(req: NextRequest) {
     })
 
     return NextResponse.json(user)
-  } catch (error) {
+  } catch (err) {
+    console.error('Error updating user plan:', err)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }

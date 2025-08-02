@@ -6,7 +6,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { db as prisma } from "./db";
 import bcrypt from "bcryptjs";
 import { Adapter } from "next-auth/adapters";
-import { User } from "@prisma/client";
 
 export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma) as Adapter,
@@ -36,7 +35,7 @@ export const authOptions: NextAuthOptions = {
                         id: true,
                         email: true,
                         name: true,
-                        password: true,// Make sure this matches your Prisma schema
+                        password: true,
                     },
                 });
 
@@ -56,23 +55,23 @@ export const authOptions: NextAuthOptions = {
                 return {
                     id: user.id,
                     email: user.email,
-                    name: user.name // Include role in the returned user object
+                    name: user.name
                 };
             },
         }),
     ],
-   callbacks: {
+    callbacks: {
         session: async ({ session, token }) => {
             if (session?.user) {
-                session.user.id = token.sub!
+                session.user.id = token.sub!;
             }
-            return session
+            return session;
         },
         jwt: async ({ user, token }) => {
             if (user) {
-                token.uid = user.id
+                token.uid = user.id;
             }
-            return token
+            return token;
         },
     },
     session: {

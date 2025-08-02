@@ -1,11 +1,19 @@
 'use client'
+
 import { useState } from 'react'
 import { Heart, Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
 
+interface FormData {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
 export default function SignupPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     password: '',
@@ -66,9 +74,10 @@ export default function SignupPage() {
         confirmPassword: ''
       })
       setAgreed(false)
-    } catch (error: any) {
+    } catch (error) {
       console.error('Registration error:', error)
-      toast.error(error.message || 'An error occurred during registration')
+      const message = error instanceof Error ? error.message : 'An error occurred during registration'
+      toast.error(message)
     } finally {
       setIsLoading(false)
     }

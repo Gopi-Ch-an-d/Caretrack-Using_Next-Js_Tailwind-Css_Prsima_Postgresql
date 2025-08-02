@@ -3,7 +3,6 @@ import { Metadata } from 'next'
 interface SEOProps {
   title?: string
   description?: string
-  keywords?: string[] // we handle this separately if needed
   canonical?: string
   ogImage?: string
 }
@@ -11,7 +10,6 @@ interface SEOProps {
 export function generateSEO({
   title = 'CareTrack - Healthcare Management Platform',
   description = 'Transform your healthcare management with CareTrack powered by Sthiram. Track health records, manage appointments, and improve your health journey.',
-  keywords = ['healthcare', 'health tracking', 'medical records', 'patient management', 'health analytics'],
   canonical = 'https://caretrack.sthiram.com',
   ogImage = '/images/og-image.jpg'
 }: SEOProps = {}): Metadata {
