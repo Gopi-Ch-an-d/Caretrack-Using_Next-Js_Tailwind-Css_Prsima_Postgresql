@@ -3,25 +3,25 @@
 import { useState, useEffect, JSX } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Heart, 
-  Shield, 
-  Users, 
-  Menu, 
-  X, 
-  Star, 
-  Check, 
-  ArrowRight, 
-  Play, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Sparkles, 
-  HeartPulse, 
+import {
+  Heart,
+  Shield,
+  Users,
+  Menu,
+  X,
+  Star,
+  Check,
+  ArrowRight,
+  Play,
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Sparkles,
+  HeartPulse,
   BellRing,
   Calendar,
   Pill,
@@ -270,7 +270,7 @@ const CareTrackApp = () => {
     {
       name: "Maya Patel",
       role: "Healthcare Administrator",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+      image: "https://www.ncfp.org/wp-content/uploads/2020/07/Maya-Patel_400x430.jpg",
       content: "The family management features are outstanding. Perfect for managing multiple patient records.",
       rating: 5
     }
@@ -324,7 +324,7 @@ const CareTrackApp = () => {
 
             {/* Auth Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Link href="/login" className="text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg transition-colors">
+              <Link href="/login" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
                 Login
               </Link>
               <Link
@@ -579,71 +579,74 @@ const CareTrackApp = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 sm:py-20 bg-white">
+      <section id="services" className="py-12 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
               Why Choose CareTrack?
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive healthcare platform provides everything you need to manage your health effectively.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => {
               const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
               const hiddenFeaturesCount = totalFeatures - initialFeaturesToShow;
 
               return (
-                <div key={index} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
-                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                <div
+                  key={index}
+                  className="group bg-white border border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2"
+                >
+                  <div className="relative h-40 sm:h-56 overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
                       width={600}
                       height={400}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 sm:group-hover:scale-110"
                     />
                   </div>
 
-                  <div className="p-6 sm:p-8">
-                    <div className="flex items-center mb-4">
-                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <div className="p-4 sm:p-6 lg:p-8">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                         {service.title}
                       </h3>
                     </div>
 
-                    <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4">{service.description}</p>
 
-                    <ul className="space-y-2 mb-4 sm:mb-6">
+                    <ul className="space-y-1 sm:space-y-2 mb-3 sm:mb-4 lg:mb-6">
                       {service.features.slice(0, initialFeaturesToShow).map((feature, i) => (
-                        <li key={i} className="flex items-center">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-gray-600">{feature}</span>
+                        <li key={i} className="flex items-start">
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5" />
+                          <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
                         </li>
                       ))}
 
                       {expandedService === index && service.features.slice(initialFeaturesToShow).map((feature, i) => (
-                        <li key={i + initialFeaturesToShow} className="flex items-center animate-fade-in">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-gray-600">{feature}</span>
+                        <li key={i + initialFeaturesToShow} className="flex items-start animate-fade-in">
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5" />
+                          <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
                         </li>
                       ))}
 
                       {hiddenFeaturesCount > 0 && (
                         <button
                           onClick={() => toggleService(index)}
-                          className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-2 flex items-center"
+                          className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center"
                         >
                           {expandedService === index ? 'Show less' : `+${hiddenFeaturesCount} more`}
                         </button>
                       )}
 
                       {expandedService === index && service.additionalContent && (
-                        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 animate-fade-in">
-                          <p className="text-gray-600">{service.additionalContent}</p>
+                        <div className="mt-2 sm:mt-3 lg:mt-4 pt-2 sm:pt-3 lg:pt-4 border-t border-gray-100 animate-fade-in">
+                          <p className="text-xs sm:text-sm text-gray-600">{service.additionalContent}</p>
                         </div>
                       )}
                     </ul>
@@ -654,7 +657,7 @@ const CareTrackApp = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Pricing Section */}
       <section id="pricing" className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
