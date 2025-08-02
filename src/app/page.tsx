@@ -3,25 +3,25 @@
 import { useState, useEffect, JSX } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Heart, 
-  Shield, 
-  Users, 
-  Menu, 
-  X, 
-  Star, 
-  Check, 
-  ArrowRight, 
-  Play, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Sparkles, 
-  HeartPulse, 
+import {
+  Heart,
+  Shield,
+  Users,
+  Menu,
+  X,
+  Star,
+  Check,
+  ArrowRight,
+  Play,
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Sparkles,
+  HeartPulse,
   BellRing,
   Calendar,
   Pill,
@@ -590,14 +590,18 @@ const CareTrackApp = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {/* Updated grid: 2 columns on mobile, 2 on md, 3 on lg */}
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => {
               const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
               const hiddenFeaturesCount = totalFeatures - initialFeaturesToShow;
 
               return (
-                <div key={index} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  key={index}
+                  className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2"
+                >
                   <div className="relative h-48 sm:h-56 overflow-hidden">
                     <Image
                       src={service.image}
@@ -625,12 +629,16 @@ const CareTrackApp = () => {
                         </li>
                       ))}
 
-                      {expandedService === index && service.features.slice(initialFeaturesToShow).map((feature, i) => (
-                        <li key={i + initialFeaturesToShow} className="flex items-center animate-fade-in">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-gray-600">{feature}</span>
-                        </li>
-                      ))}
+                      {expandedService === index &&
+                        service.features.slice(initialFeaturesToShow).map((feature, i) => (
+                          <li
+                            key={i + initialFeaturesToShow}
+                            className="flex items-center animate-fade-in"
+                          >
+                            <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                            <span className="text-gray-600">{feature}</span>
+                          </li>
+                        ))}
 
                       {hiddenFeaturesCount > 0 && (
                         <button
@@ -667,9 +675,13 @@ const CareTrackApp = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {pricingPlans.map((plan, index) => (
-              <div key={index} className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 lg:scale-105 shadow-xl' : 'border-gray-200'} rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group`}>
+              <div
+                key={index}
+                className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 lg:scale-105 shadow-xl' : 'border-gray-200'
+                  } rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group`}
+              >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
@@ -691,18 +703,29 @@ const CareTrackApp = () => {
 
                 <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.slice(0, 4).map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-2 sm:space-x-3 group/item">
+                    <li
+                      key={featureIndex}
+                      className="flex items-center space-x-2 sm:space-x-3 group/item"
+                    >
                       <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
+                      <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">
+                        {feature}
+                      </span>
                     </li>
                   ))}
 
-                  {expandedPlans[index] && plan.features.slice(4).map((feature, featureIndex) => (
-                    <li key={featureIndex + 4} className="flex items-center space-x-2 sm:space-x-3 group/item">
-                      <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                      <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">{feature}</span>
-                    </li>
-                  ))}
+                  {expandedPlans[index] &&
+                    plan.features.slice(4).map((feature, featureIndex) => (
+                      <li
+                        key={featureIndex + 4}
+                        className="flex items-center space-x-2 sm:space-x-3 group/item"
+                      >
+                        <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                        <span className="text-sm sm:text-base text-gray-700 group-hover/item:text-gray-900 transition-colors">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
 
                   {plan.features.length > 4 && (
                     <button
@@ -749,6 +772,7 @@ const CareTrackApp = () => {
         </div>
       </section>
 
+
       {/* Testimonials Section */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -761,15 +785,24 @@ const CareTrackApp = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {/* ✅ Force 2-column layout even on small screens */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group">
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 group"
+              >
                 <div className="flex items-center mb-3 sm:mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 fill-current" />
+                    <Star
+                      key={i}
+                      className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 fill-current"
+                    />
                   ))}
                 </div>
-                <p className="text-gray-700 italic mb-4 sm:mb-6">&quot;{testimonial.content}&quot;</p>
+                <p className="text-gray-700 italic mb-4 sm:mb-6">
+                  &quot;{testimonial.content}&quot;
+                </p>
                 <div className="flex items-center">
                   <Image
                     src={testimonial.image}
