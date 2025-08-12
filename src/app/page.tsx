@@ -532,11 +532,19 @@ const CareTrackApp = () => {
             data-animate
             id="hero-badge"
           >
-            <div className={`inline-flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 border border-purple-200 transition-all duration-1000 ${getAnimationClass('hero-badge', 'animate-slide-down opacity-100 translate-y-0')}`}>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
-              <span className="text-sm font-medium text-gray-700">Trusted by Medical Assistance Companies Worldwide</span>
-              <Sparkles className="w-4 h-4 text-purple-500 animate-spin-slow" />
+            <div
+              className={`inline-flex flex-wrap items-center justify-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 border border-purple-200 transition-all duration-1000 mx-auto text-center mt-6 sm:mt-10 ${getAnimationClass(
+                'hero-badge',
+                'animate-slide-down opacity-100 translate-y-0'
+              )}`}
+            >
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-ping flex-shrink-0"></div>
+              <span className="text-xs sm:text-sm font-medium text-gray-700 leading-snug">
+                Trusted by Medical Assistance Companies Worldwide
+              </span>
+              <Sparkles className="w-4 h-4 text-purple-500 animate-spin-slow flex-shrink-0" />
             </div>
+
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
