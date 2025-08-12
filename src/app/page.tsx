@@ -60,7 +60,7 @@ const CareTrackApp = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
 
   // Mouse tracking for parallax effects
   useEffect(() => {
@@ -1034,8 +1034,8 @@ const CareTrackApp = () => {
                 <Link
                   href="/signup"
                   className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base block text-center relative overflow-hidden group/button ${plan.popular
-                      ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
-                      : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
+                    ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
+                    : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
                     }`}
                 >
                   <span className="relative z-10">{plan.buttonText}</span>
@@ -1151,7 +1151,7 @@ const CareTrackApp = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 animate-fade-in">
               Discover how CareTrack can streamline your operations
             </h2>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-6 sm:mb-8 animate-fade-in-up delay-300">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               💡 Stop managing cases the hard way. Let us show you how CareTrack can change your daily operations in just one call.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 animate-fade-in-up delay-500">
