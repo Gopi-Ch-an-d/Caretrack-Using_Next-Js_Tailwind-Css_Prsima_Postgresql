@@ -648,7 +648,7 @@ const CareTrackApp = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 sm:py-20 bg-white relative">
+         <section id="features" className="py-16 sm:py-20 bg-white relative">
         {/* Section background decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-50 blur-3xl"></div>
 
@@ -668,7 +668,8 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          {/* Updated grid: 2 columns on mobile, 2 on small screens, 3 on large screens */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
             {services.map((service, index) => {
               const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
@@ -686,7 +687,7 @@ const CareTrackApp = () => {
                   className={`group bg-white border border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 ${getAnimationClass(`service-${index}`, 'opacity-100 translate-y-0')}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative h-40 sm:h-56 overflow-hidden">
+                  <div className="relative h-32 sm:h-40 lg:h-56 overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -697,32 +698,32 @@ const CareTrackApp = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
-                  <div className="p-4 sm:p-6 lg:p-8">
-                    <div className="flex items-center mb-3 sm:mb-4">
-                      <div className="mr-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <div className="p-3 sm:p-6 lg:p-8">
+                    <div className="flex items-center mb-2 sm:mb-4">
+                      <div className="mr-2 sm:mr-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         {service.icon}
                       </div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-sm sm:text-lg lg:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                         {service.title}
                       </h3>
                     </div>
 
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-xs sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4 group-hover:text-gray-700 transition-colors duration-300">
                       {service.description}
                     </p>
 
-                    <ul className="space-y-1 sm:space-y-2 mb-3 sm:mb-4 lg:mb-6">
+                    <ul className="space-y-1 sm:space-y-2 mb-2 sm:mb-6">
                       {service.features.slice(0, initialFeaturesToShow).map((feature, i) => (
                         <li key={i} className="flex items-start group/item">
-                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5 group-hover/item:scale-110 transition-transform duration-300" />
-                          <span className="text-xs sm:text-sm text-gray-600 group-hover/item:text-gray-700 transition-colors duration-300">{feature}</span>
+                          <CheckCircle className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 mr-1 sm:mr-2 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-300" />
+                          <span className="text-xs sm:text-sm text-gray-600 group-hover/item:text-gray-700 transition-colors duration-300 leading-snug">{feature}</span>
                         </li>
                       ))}
 
                       {expandedService === index && service.features.slice(initialFeaturesToShow).map((feature, i) => (
                         <li key={i + initialFeaturesToShow} className="flex items-start animate-slide-down opacity-0" style={{ animation: 'slideDown 0.3s ease-out forwards', animationDelay: `${i * 0.1}s` }}>
-                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5" />
-                          <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
+                          <CheckCircle className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 mr-1 sm:mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-600 leading-snug">{feature}</span>
                         </li>
                       ))}
 
@@ -732,12 +733,12 @@ const CareTrackApp = () => {
                           className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center group/button transition-colors duration-300"
                         >
                           {expandedService === index ? 'Show less' : `+${hiddenFeaturesCount} more`}
-                          <ChevronDown className={`w-4 h-4 ml-1 transform transition-transform duration-300 ${expandedService === index ? 'rotate-180' : 'group-hover/button:translate-y-1'}`} />
+                          <ChevronDown className={`w-3 sm:w-4 h-3 sm:h-4 ml-1 transform transition-transform duration-300 ${expandedService === index ? 'rotate-180' : 'group-hover/button:translate-y-1'}`} />
                         </button>
                       )}
 
                       {expandedService === index && service.additionalContent && (
-                        <div className="mt-2 sm:mt-3 lg:mt-4 pt-2 sm:pt-3 lg:pt-4 border-t border-gray-100 animate-fade-in">
+                        <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-gray-100 animate-fade-in">
                           <p className="text-xs sm:text-sm text-gray-600">{service.additionalContent}</p>
                         </div>
                       )}
@@ -962,21 +963,21 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          {/* Plans */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Plans - Updated grid: First two plans in mobile 2-column, third plan spans full width on mobile */}
+          <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
                 data-animate
                 id={`pricing-${index}`}
                 className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 lg:scale-105 shadow-2xl' : 'border-gray-200'
-                  } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')}`}
+                  } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')} ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
-                      <Sparkles className="w-4 h-4 inline-block mr-1" />
+                      <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 inline-block mr-1" />
                       Most Popular
                     </div>
                   </div>
@@ -987,24 +988,24 @@ const CareTrackApp = () => {
                     {plan.name}
                   </h3>
                   <div className="mb-2 sm:mb-3">
-                    <span className="text-3xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
+                    <span className="text-2xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
                       {plan.price}
                     </span>
-                    <span className="text-gray-600">{plan.period}</span>
+                    <span className="text-sm sm:text-base text-gray-600">{plan.period}</span>
                   </div>
-                  <p className="text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300">
+                  <p className="text-xs sm:text-base text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300 leading-snug">
                     {plan.description}
                   </p>
                 </div>
 
-                <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                <ul className="space-y-1 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.slice(0, 4).map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className="flex items-center space-x-2 sm:space-x-3"
+                      className="flex items-start space-x-1 sm:space-x-3"
                     >
-                      <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
-                      <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
+                      <Check className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                      <span className="text-xs sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900 leading-snug">
                         {feature}
                       </span>
                     </li>
@@ -1014,10 +1015,10 @@ const CareTrackApp = () => {
                     plan.features.slice(4).map((feature, featureIndex) => (
                       <li
                         key={featureIndex + 4}
-                        className="flex items-center space-x-2 sm:space-x-3 animate-slide-down"
+                        className="flex items-start space-x-1 sm:space-x-3 animate-slide-down"
                       >
-                        <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
-                        <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
+                        <Check className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                        <span className="text-xs sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900 leading-snug">
                           {feature}
                         </span>
                       </li>
@@ -1026,13 +1027,13 @@ const CareTrackApp = () => {
                   {plan.features.length > 4 && (
                     <button
                       onClick={() => togglePlan(index)}
-                      className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
+                      className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
                     >
                       {expandedPlans[index]
                         ? 'Show less'
                         : `+${plan.features.length - 4} more`}
                       <ChevronDown
-                        className={`w-4 h-4 ml-1 transform transition-all duration-300 ${expandedPlans[index] ? 'rotate-180' : ''
+                        className={`w-3 sm:w-4 h-3 sm:h-4 ml-1 transform transition-all duration-300 ${expandedPlans[index] ? 'rotate-180' : ''
                           }`}
                       />
                     </button>
@@ -1077,7 +1078,6 @@ const CareTrackApp = () => {
           </div>
         </div>
       </section>
-
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
@@ -1188,7 +1188,7 @@ const CareTrackApp = () => {
       </section>
 
       {/* Advantages Section */}
-      <div className="py-16 sm:py-20 bg-white relative">
+       <div className="py-16 sm:py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="text-center mb-10 sm:mb-16"
@@ -1205,20 +1205,24 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
+          {/* Updated grid: 2 columns on mobile, 3 on small screens, 5 on extra large screens */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-6">
             {advantages.map((advantage, index) => (
               <div
                 key={index}
                 data-animate
                 id={`advantage-${index}`}
-                className={`bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group hover:border-blue-300 ${getAnimationClass(`advantage-${index}`, 'opacity-100 translate-y-0')}`}
+                className={`bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-3 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group hover:border-blue-300 ${getAnimationClass(`advantage-${index}`, 'opacity-100 translate-y-0')}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="mb-3 sm:mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                    {advantage.icon}
+                  <div className="mb-2 sm:mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    {/* Scale down icons for mobile */}
+                    <div className="w-6 h-6 sm:w-8 sm:h-8">
+                      {advantage.icon}
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base group-hover:text-blue-600 transition-colors duration-300">
+                  <h4 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-xs sm:text-base group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                     {advantage.title}
                   </h4>
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
