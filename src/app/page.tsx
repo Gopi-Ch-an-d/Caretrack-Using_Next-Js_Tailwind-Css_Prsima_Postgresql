@@ -595,7 +595,7 @@ const CareTrackApp = () => {
                 </Link>
 
                 <Link
-                  href="#demo-video"
+                  href="/videos/First_Starting_Caretrack_Powered_by_Sthiram__1..mp4"
                   className="flex items-center justify-center bg-gray-100 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg group"
                 >
                   <div className="relative">
