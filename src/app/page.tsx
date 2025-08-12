@@ -7,7 +7,6 @@ import {
   Heart,
   Shield,
   Users,
-  Menu,
   X,
   Star,
   Check,
@@ -21,10 +20,6 @@ import {
   Instagram,
   Linkedin,
   Sparkles,
-  HeartPulse,
-  BellRing,
-  Calendar,
-  Pill,
   CheckCircle,
   Navigation,
   MessageSquare,
@@ -36,18 +31,6 @@ import {
   ChevronDown,
   Zap
 } from 'lucide-react';
-
-interface PricingPlan {
-  name: string;
-  price: string;
-  period: string;
-  description: string;
-  features: string[];
-  buttonText: string;
-  popular: boolean;
-  color: string;
-  gradient: string;
-}
 
 interface Service {
   title: string;
