@@ -1472,7 +1472,7 @@ const CareTrackApp = () => {
               <X className="w-6 h-6" />
             </button>
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Contact Us</h3>
-            <p className="text-gray-600 mb-6">Fill out the form below and we'll get back to you soon.</p>
+            <p className="text-gray-600 mb-6">Fill out the form below and we&apos;ll get back to you soon.</p>
             <form className="space-y-4">
               <div>
                 <label htmlFor="modal-name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
