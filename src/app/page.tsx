@@ -559,13 +559,13 @@ const CareTrackApp = () => {
 
               <div className={`transition-all duration-1000 delay-500 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0')}`}>
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                  🚀 Take Your Assistance Operations to the Next Level with CareTrack. An advanced CRM & MIS platform designed to optimize patient care, operational efficiency, and cost containment for global assistance providers. <strong>One platform. Zero hassle. 100% efficiency.</strong>
+                  🚀 Take Your Assistance Operations to the Next Level with CareTrack. An advanced CRM &amp; MIS platform designed to optimize patient care, operational efficiency, and cost containment for global assistance providers. <strong>One platform. Zero hassle. 100% efficiency.</strong>
                 </p>
               </div>
 
               <div className={`bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4 transition-all duration-1000 delay-700 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0 animate-glow')}`}>
                 <p className="text-gray-700">
-                  Say goodbye to scattered spreadsheets, missed follow-ups, and delayed updates. CareTrack brings <strong>case management, communication, and reporting</strong> together — so you can focus on what matters: delivering exceptional care to your clients. With Google Maps, WhatsApp, and Email integration, your team can <strong>work smarter, faster, and better.</strong>
+                  Say goodbye to scattered spreadsheets, missed follow-ups, and delayed updates. CareTrack brings <strong>case management, communication, and reporting</strong> together &mdash; so you can focus on what matters: delivering exceptional care to your clients. With Google Maps, WhatsApp, and Email integration, your team can <strong>work smarter, faster, and better.</strong>
                 </p>
               </div>
 
@@ -654,7 +654,7 @@ const CareTrackApp = () => {
               <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in">
                 CareTrack Features
               </h2>
-              <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up delay-300">
+              <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive tools designed to streamline your medical assistance operations.
               </p>
             </div>
