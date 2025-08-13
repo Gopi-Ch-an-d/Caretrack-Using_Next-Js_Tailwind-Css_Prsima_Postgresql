@@ -121,6 +121,9 @@ const CareTrackApp = () => {
   }, []);
 
   
+  
+
+
   const [animatedElements, setAnimatedElements] = useState(new Set());
 
   const pricingPlans = [
@@ -200,9 +203,9 @@ const CareTrackApp = () => {
     }));
   };
 
-  
+ 
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -969,7 +972,7 @@ const CareTrackApp = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
+    <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
@@ -1076,8 +1079,9 @@ const CareTrackApp = () => {
                 </p>
               </div>
 
-              <button
-                className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button ${
+              {/* Link Button for Navigation to /signup */}
+              <Link href={'/signup'}
+                className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${
                   plan.popular
                     ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
                     : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
@@ -1087,7 +1091,7 @@ const CareTrackApp = () => {
                 {plan.popular && (
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-700"></div>
                 )}
-              </button>
+              </Link>
             </div>
           ))}
         </div>
