@@ -31,6 +31,7 @@ import {
   ChevronDown,
   Zap
 } from 'lucide-react';
+import React from 'react';
 
 interface Service {
   title: string;
@@ -119,6 +120,79 @@ const CareTrackApp = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+
+  const pricingPlans = [
+    {
+      name: "Basic",
+      price: "Free",
+      period: "",
+      description: "Perfect for Startup Assistance companies",
+      color: "from-green-50 to-emerald-50",
+      gradient: "from-green-500 to-emerald-600",
+      popular: false,
+      buttonText: "Get Started Free",
+      features: [
+        "1 license user account with limited cases",
+        "Email Integration",
+        "Google Map Integration",
+        "Limited Reports",
+        "Microsoft Azure platform",
+        "Secured platform",
+        "IT support without timelines"
+      ],
+      requirements: "Need to submit company establishment documents as proof of Assistance company."
+    },
+    {
+      name: "Standard",
+      price: "$499",
+      period: "/month",
+      description: "Enhanced features for growing assistance companies",
+      color: "from-purple-50 to-pink-50",
+      gradient: "from-purple-600 to-pink-600",
+      popular: true,
+      buttonText: "Start Standard Plan",
+      features: [
+        "5 User License account with Limited data",
+        "1 Supervisor account (dual purpose: monitoring + user license)",
+        "Email Integration with Alert enabled",
+        "Google Map Integration with regular google search",
+        "WhatsApp Integration",
+        "Internal chat, case group chat",
+        "Microsoft Azure platform",
+        "Secured platform",
+        "Unlimited reports",
+        "IT support with timelines"
+      ],
+      requirements: "Company establishment documents as a proof of Assistance company.. Advance payment (1 month) to start the services. Lock-in period of at least : 1 year and to be renewed with 5% increase in monthly payment."
+    },
+    {
+      name: "Premium",
+      price: "$999",
+      period: "/month",
+      description: "Complete solution for established assistance companies",
+      color: "from-blue-50 to-cyan-50",
+      gradient: "from-blue-600 to-cyan-600",
+      popular: false,
+      buttonText: "Go Premium",
+      features: [
+        "10 User License account with Limited data",
+        "1 Supervisor account (dual purpose: monitoring + user license)",
+        "1 Admin account to monitor your Licenses",
+        "Email Integration with Alert enabled",
+        "Google Map Integration with regular google search",
+        "WhatsApp Integration",
+        "Internal chat, case group chat",
+        "Microsoft Azure platform",
+        "Secured platform",
+        "Unlimited reports",
+        "IT support with timelines"
+      ],
+      requirements: "Company establishment documents as a proof of Assistance company. Advance payment (1 month) to start  to start the services. Lock-in period of at least: 1 yearand to be renewed with 5% increase in monthly payment."
+    }
+  ];
+
   const togglePlan = (index: number) => {
     setExpandedPlans(prev => ({
       ...prev,
@@ -126,71 +200,22 @@ const CareTrackApp = () => {
     }));
   };
 
-  const pricingPlans = [
-    {
-      name: 'Basic',
-      price: 'Free',
-      period: '',
-      description: 'Perfect for individuals getting started',
-      color: 'from-gray-100 to-gray-200',
-      gradient: 'from-gray-500 to-gray-700',
-      popular: false,
-      buttonText: 'Get Started',
-      features: [
-        'Basic symptom checker',
-        'Access to general health articles',
-        'Email support (48h response)',
-        'Limited health tracking',
-        '1 personalized health tip per week',
-        'Community forum access',
-        'Basic health assessments'
-      ]
-    },
-    {
-      name: 'Standard',
-      price: '₹499',
-      period: '/month',
-      description: 'Great for regular health monitoring',
-      color: 'from-blue-50 to-blue-100',
-      gradient: 'from-blue-500 to-indigo-600',
-      popular: true,
-      buttonText: 'Start Free Trial',
-      features: [
-        'Advanced symptom analysis',
-        'Priority email support (24h response)',
-        'Unlimited health tracking',
-        'Personalized health recommendations',
-        'Daily health tips',
-        'Medication reminders',
-        'Basic diet plans',
-        'Exercise suggestions',
-        'Monthly health reports'
-      ]
-    },
-    {
-      name: 'Premium',
-      price: '₹999',
-      period: '/month',
-      description: 'Comprehensive health management',
-      color: 'from-purple-50 to-indigo-100',
-      gradient: 'from-purple-600 to-indigo-700',
-      popular: false,
-      buttonText: 'Start Free Trial',
-      features: [
-        'All Standard features plus',
-        '24/7 live chat with health experts',
-        'Video consultations (2/month)',
-        'Personal health coach',
-        'Customized diet & exercise plans',
-        'Advanced health analytics',
-        'Family account (up to 5 members)',
-        'Emergency priority support',
-        'Annual health checkup reminders',
-        'Mental wellness programs',
-        'Personalized health roadmap'
-      ]
-    }
-  ];
+  
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setAnimatedElements(prev => new Set([...prev, entry.target.id]));
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const services: Service[] = [
     {
@@ -648,7 +673,7 @@ const CareTrackApp = () => {
       </section>
 
       {/* Features Section */}
-         <section id="features" className="py-16 sm:py-20 bg-white relative">
+      <section id="features" className="py-16 sm:py-20 bg-white relative">
         {/* Section background decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-50 blur-3xl"></div>
 
@@ -668,8 +693,7 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          {/* Updated grid: 2 columns on mobile, 2 on small screens, 3 on large screens */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => {
               const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
@@ -687,7 +711,7 @@ const CareTrackApp = () => {
                   className={`group bg-white border border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 ${getAnimationClass(`service-${index}`, 'opacity-100 translate-y-0')}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative h-32 sm:h-40 lg:h-56 overflow-hidden">
+                  <div className="relative h-40 sm:h-56 overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -698,32 +722,32 @@ const CareTrackApp = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
-                  <div className="p-3 sm:p-6 lg:p-8">
-                    <div className="flex items-center mb-2 sm:mb-4">
-                      <div className="mr-2 sm:mr-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <div className="p-4 sm:p-6 lg:p-8">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="mr-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         {service.icon}
                       </div>
-                      <h3 className="text-sm sm:text-lg lg:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                         {service.title}
                       </h3>
                     </div>
 
-                    <p className="text-xs sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 group-hover:text-gray-700 transition-colors duration-300">
                       {service.description}
                     </p>
 
-                    <ul className="space-y-1 sm:space-y-2 mb-2 sm:mb-6">
+                    <ul className="space-y-1 sm:space-y-2 mb-3 sm:mb-4 lg:mb-6">
                       {service.features.slice(0, initialFeaturesToShow).map((feature, i) => (
                         <li key={i} className="flex items-start group/item">
-                          <CheckCircle className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 mr-1 sm:mr-2 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-300" />
-                          <span className="text-xs sm:text-sm text-gray-600 group-hover/item:text-gray-700 transition-colors duration-300 leading-snug">{feature}</span>
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5 group-hover/item:scale-110 transition-transform duration-300" />
+                          <span className="text-xs sm:text-sm text-gray-600 group-hover/item:text-gray-700 transition-colors duration-300">{feature}</span>
                         </li>
                       ))}
 
                       {expandedService === index && service.features.slice(initialFeaturesToShow).map((feature, i) => (
                         <li key={i + initialFeaturesToShow} className="flex items-start animate-slide-down opacity-0" style={{ animation: 'slideDown 0.3s ease-out forwards', animationDelay: `${i * 0.1}s` }}>
-                          <CheckCircle className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 mr-1 sm:mr-2 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs sm:text-sm text-gray-600 leading-snug">{feature}</span>
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 mt-0.5" />
+                          <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
                         </li>
                       ))}
 
@@ -733,12 +757,12 @@ const CareTrackApp = () => {
                           className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center group/button transition-colors duration-300"
                         >
                           {expandedService === index ? 'Show less' : `+${hiddenFeaturesCount} more`}
-                          <ChevronDown className={`w-3 sm:w-4 h-3 sm:h-4 ml-1 transform transition-transform duration-300 ${expandedService === index ? 'rotate-180' : 'group-hover/button:translate-y-1'}`} />
+                          <ChevronDown className={`w-4 h-4 ml-1 transform transition-transform duration-300 ${expandedService === index ? 'rotate-180' : 'group-hover/button:translate-y-1'}`} />
                         </button>
                       )}
 
                       {expandedService === index && service.additionalContent && (
-                        <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-gray-100 animate-fade-in">
+                        <div className="mt-2 sm:mt-3 lg:mt-4 pt-2 sm:pt-3 lg:pt-4 border-t border-gray-100 animate-fade-in">
                           <p className="text-xs sm:text-sm text-gray-600">{service.additionalContent}</p>
                         </div>
                       )}
@@ -946,138 +970,169 @@ const CareTrackApp = () => {
 
       {/* Pricing Section */}
       <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
-        {/* Background decorations */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-float-reverse"></div>
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header */}
-          <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
-            <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Choose Your Plan
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
-              </p>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
+          <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Choose Your Plan
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
+            </p>
           </div>
+        </div>
 
-          {/* Plans - Updated grid: First two plans in mobile 2-column, third plan spans full width on mobile */}
-          <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
-            {pricingPlans.map((plan, index) => (
-              <div
-                key={index}
-                data-animate
-                id={`pricing-${index}`}
-                className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular ? 'border-purple-500 lg:scale-105 shadow-2xl' : 'border-gray-200'
-                  } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')} ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
-                      <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 inline-block mr-1" />
-                      Most Popular
-                    </div>
+        {/* Plans */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {pricingPlans.map((plan, index) => (
+            <div
+              key={index}
+              data-animate
+              id={`pricing-${index}`}
+              className={`relative bg-gradient-to-br ${plan.color} border-2 ${
+                plan.popular 
+                  ? 'border-purple-500 lg:scale-105 shadow-2xl' 
+                  : 'border-gray-200'
+              } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')}`}
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
+                    <Sparkles className="w-4 h-4 inline-block mr-1" />
+                    Most Popular
                   </div>
-                )}
-
-                <div className="text-center mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover/card:scale-110 transition-transform duration-300">
-                    {plan.name}
-                  </h3>
-                  <div className="mb-2 sm:mb-3">
-                    <span className="text-2xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
-                      {plan.price}
-                    </span>
-                    <span className="text-sm sm:text-base text-gray-600">{plan.period}</span>
-                  </div>
-                  <p className="text-xs sm:text-base text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300 leading-snug">
-                    {plan.description}
-                  </p>
                 </div>
+              )}
 
-                <ul className="space-y-1 sm:space-y-3 mb-4 sm:mb-6">
-                  {plan.features.slice(0, 4).map((feature, featureIndex) => (
+              <div className="text-center mb-4 sm:mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover/card:scale-110 transition-transform duration-300">
+                  {plan.name}
+                </h3>
+                <div className="mb-2 sm:mb-3">
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
+                    {plan.price}
+                  </span>
+                  <span className="text-gray-600">{plan.period}</span>
+                </div>
+                <p className="text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300">
+                  {plan.description}
+                </p>
+              </div>
+
+              <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                {plan.features.slice(0, 5).map((feature, featureIndex) => (
+                  <li
+                    key={featureIndex}
+                    className="flex items-start space-x-2 sm:space-x-3"
+                  >
+                    <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                    <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
+                      {feature}
+                    </span>
+                  </li>
+                ))}
+
+                {expandedPlans[index] &&
+                  plan.features.slice(5).map((feature, featureIndex) => (
                     <li
-                      key={featureIndex}
-                      className="flex items-start space-x-1 sm:space-x-3"
+                      key={featureIndex + 5}
+                      className="flex items-start space-x-2 sm:space-x-3 animate-pulse"
                     >
-                      <Check className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
-                      <span className="text-xs sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900 leading-snug">
+                      <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                      <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
                         {feature}
                       </span>
                     </li>
                   ))}
 
-                  {expandedPlans[index] &&
-                    plan.features.slice(4).map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex + 4}
-                        className="flex items-start space-x-1 sm:space-x-3 animate-slide-down"
-                      >
-                        <Check className="w-3 sm:w-5 h-3 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
-                        <span className="text-xs sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900 leading-snug">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
+                {plan.features.length > 5 && (
+                  <button
+                    onClick={() => togglePlan(index)}
+                    className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
+                  >
+                    {expandedPlans[index]
+                      ? 'Show less'
+                      : `+${plan.features.length - 5} more features`}
+                    <ChevronDown
+                      className={`w-4 h-4 ml-1 transform transition-all duration-300 ${
+                        expandedPlans[index] ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                )}
+              </ul>
 
-                  {plan.features.length > 4 && (
-                    <button
-                      onClick={() => togglePlan(index)}
-                      className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
-                    >
-                      {expandedPlans[index]
-                        ? 'Show less'
-                        : `+${plan.features.length - 4} more`}
-                      <ChevronDown
-                        className={`w-3 sm:w-4 h-3 sm:h-4 ml-1 transform transition-all duration-300 ${expandedPlans[index] ? 'rotate-180' : ''
-                          }`}
-                      />
-                    </button>
-                  )}
-                </ul>
+              {/* Requirements */}
+              <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p className="text-xs text-yellow-800">
+                  <Shield className="w-4 h-4 inline mr-1" />
+                  {plan.requirements}
+                </p>
+              </div>
 
-                <Link
-                  href="/signup"
-                  className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base block text-center relative overflow-hidden group/button ${plan.popular
+              <button
+                className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button ${
+                  plan.popular
                     ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
                     : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
-                    }`}
-                >
-                  <span className="relative z-10">{plan.buttonText}</span>
-                  {plan.popular && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-700"></div>
-                  )}
-                </Link>
-              </div>
-            ))}
-          </div>
+                }`}
+              >
+                <span className="relative z-10">{plan.buttonText}</span>
+                {plan.popular && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-700"></div>
+                )}
+              </button>
+            </div>
+          ))}
+        </div>
 
-          {/* Footer */}
-          <div className="text-center mt-6 sm:mt-8" data-animate id="pricing-footer">
-            <div className={`transition-all duration-1000 delay-600 ${getAnimationClass('pricing-footer', 'opacity-100 translate-y-0')}`}>
-              <p className="text-gray-600 mb-2 sm:mb-3">
-                All plans include 30-day money-back guarantee
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
-                {["No setup fees", "Cancel anytime", "24/7 support"].map((feature, index) => (
-                  <span
-                    key={index}
-                    className="flex items-center animate-fade-in"
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
-                    {feature}
-                  </span>
-                ))}
-              </div>
+        {/* Feature Highlights */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-animate id="feature-highlights">
+          <div className={`text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl transition-all duration-1000 delay-300 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+            <Shield className="w-8 h-8 mx-auto mb-3 text-green-600" />
+            <h4 className="font-semibold text-gray-900 mb-2">Azure Security</h4>
+            <p className="text-sm text-gray-600">Enterprise-grade security with Microsoft Azure platform</p>
+          </div>
+          <div className={`text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl transition-all duration-1000 delay-400 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+            <MessageSquare className="w-8 h-8 mx-auto mb-3 text-blue-600" />
+            <h4 className="font-semibold text-gray-900 mb-2">Multi-Channel Support</h4>
+            <p className="text-sm text-gray-600">Email, WhatsApp, and internal chat integration</p>
+          </div>
+          <div className={`text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl transition-all duration-1000 delay-500 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+            <Users className="w-8 h-8 mx-auto mb-3 text-purple-600" />
+            <h4 className="font-semibold text-gray-900 mb-2">Team Management</h4>
+            <p className="text-sm text-gray-600">User licenses with supervisor and admin controls</p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center mt-6 sm:mt-8" data-animate id="pricing-footer">
+          <div className={`transition-all duration-1000 delay-600 ${getAnimationClass('pricing-footer', 'opacity-100 translate-y-0')}`}>
+            <p className="text-gray-600 mb-2 sm:mb-3">
+              All plans include company verification and dedicated IT support
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
+              {["Azure Platform", "Secure Integration", "Expert Support"].map((feature, index) => (
+                <span
+                  key={index}
+                  className="flex items-center animate-pulse"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
+                  {feature}
+                </span>
+              ))}
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
@@ -1188,7 +1243,7 @@ const CareTrackApp = () => {
       </section>
 
       {/* Advantages Section */}
-       <div className="py-16 sm:py-20 bg-white relative">
+      <div className="py-16 sm:py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="text-center mb-10 sm:mb-16"
@@ -1205,24 +1260,20 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          {/* Updated grid: 2 columns on mobile, 3 on small screens, 5 on extra large screens */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {advantages.map((advantage, index) => (
               <div
                 key={index}
                 data-animate
                 id={`advantage-${index}`}
-                className={`bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-3 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group hover:border-blue-300 ${getAnimationClass(`advantage-${index}`, 'opacity-100 translate-y-0')}`}
+                className={`bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group hover:border-blue-300 ${getAnimationClass(`advantage-${index}`, 'opacity-100 translate-y-0')}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="mb-2 sm:mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                    {/* Scale down icons for mobile */}
-                    <div className="w-6 h-6 sm:w-8 sm:h-8">
-                      {advantage.icon}
-                    </div>
+                  <div className="mb-3 sm:mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    {advantage.icon}
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-xs sm:text-base group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base group-hover:text-blue-600 transition-colors duration-300">
                     {advantage.title}
                   </h4>
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
