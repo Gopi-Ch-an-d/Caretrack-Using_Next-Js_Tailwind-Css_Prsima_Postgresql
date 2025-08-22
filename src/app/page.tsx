@@ -120,8 +120,8 @@ const CareTrackApp = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
-  
+
+
 
 
   const [animatedElements, setAnimatedElements] = useState(new Set());
@@ -203,7 +203,7 @@ const CareTrackApp = () => {
     }));
   };
 
- 
+
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -428,13 +428,14 @@ const CareTrackApp = () => {
                 className="flex items-center space-x-2 cursor-pointer group"
                 onClick={() => smoothScroll('home')}
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 group-hover:rotate-3">
-                  <Heart className="w-6 h-6 text-white group-hover:animate-pulse" />
+                <div className="flex items-center space-x-3 group">
+                  <img
+                    src="/caretrack_logo.png"
+                    alt="CareTrack Logo"
+                    className="h-16 w-auto transform group-hover:scale-110 transition-all duration-300"
+                  />
                 </div>
-                <div className="group-hover:translate-x-1 transition-transform duration-300">
-                  <div className="text-xl font-bold text-gray-900">CareTrack</div>
-                  <div className="text-xs text-gray-500">Powered by Sthiram Services</div>
-                </div>
+
               </div>
             </div>
 
@@ -696,7 +697,7 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => {
               const initialFeaturesToShow = 2;
               const totalFeatures = service.features.length;
@@ -972,80 +973,66 @@ const CareTrackApp = () => {
       </section>
 
       {/* Pricing Section */}
-    <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
+      <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
-          <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Choose Your Plan
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
-            </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
+            <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Choose Your Plan
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Plans */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {pricingPlans.map((plan, index) => (
-            <div
-              key={index}
-              data-animate
-              id={`pricing-${index}`}
-              className={`relative bg-gradient-to-br ${plan.color} border-2 ${
-                plan.popular 
-                  ? 'border-purple-500 lg:scale-105 shadow-2xl' 
-                  : 'border-gray-200'
-              } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')}`}
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
-                    <Sparkles className="w-4 h-4 inline-block mr-1" />
-                    Most Popular
+          {/* Plans */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                data-animate
+                id={`pricing-${index}`}
+                className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular
+                    ? 'border-purple-500 lg:scale-105 shadow-2xl'
+                    : 'border-gray-200'
+                  } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')}`}
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
+                      <Sparkles className="w-4 h-4 inline-block mr-1" />
+                      Most Popular
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <div className="text-center mb-4 sm:mb-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover/card:scale-110 transition-transform duration-300">
-                  {plan.name}
-                </h3>
-                <div className="mb-2 sm:mb-3">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-600">{plan.period}</span>
-                </div>
-                <p className="text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300">
-                  {plan.description}
-                </p>
-              </div>
-
-              <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                {plan.features.slice(0, 5).map((feature, featureIndex) => (
-                  <li
-                    key={featureIndex}
-                    className="flex items-start space-x-2 sm:space-x-3"
-                  >
-                    <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
-                    <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
-                      {feature}
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover/card:scale-110 transition-transform duration-300">
+                    {plan.name}
+                  </h3>
+                  <div className="mb-2 sm:mb-3">
+                    <span className="text-3xl sm:text-4xl font-bold text-gray-900 group-hover/card:text-blue-600 transition-colors duration-300">
+                      {plan.price}
                     </span>
-                  </li>
-                ))}
+                    <span className="text-gray-600">{plan.period}</span>
+                  </div>
+                  <p className="text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300">
+                    {plan.description}
+                  </p>
+                </div>
 
-                {expandedPlans[index] &&
-                  plan.features.slice(5).map((feature, featureIndex) => (
+                <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                  {plan.features.slice(0, 5).map((feature, featureIndex) => (
                     <li
-                      key={featureIndex + 5}
-                      className="flex items-start space-x-2 sm:space-x-3 animate-pulse"
+                      key={featureIndex}
+                      className="flex items-start space-x-2 sm:space-x-3"
                     >
                       <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
                       <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
@@ -1054,89 +1041,100 @@ const CareTrackApp = () => {
                     </li>
                   ))}
 
-                {plan.features.length > 5 && (
-                  <button
-                    onClick={() => togglePlan(index)}
-                    className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
-                  >
-                    {expandedPlans[index]
-                      ? 'Show less'
-                      : `+${plan.features.length - 5} more features`}
-                    <ChevronDown
-                      className={`w-4 h-4 ml-1 transform transition-all duration-300 ${
-                        expandedPlans[index] ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                )}
-              </ul>
+                  {expandedPlans[index] &&
+                    plan.features.slice(5).map((feature, featureIndex) => (
+                      <li
+                        key={featureIndex + 5}
+                        className="flex items-start space-x-2 sm:space-x-3 animate-pulse"
+                      >
+                        <Check className="w-4 sm:w-5 h-4 sm:h-5 text-green-500 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                        <span className="text-sm sm:text-base text-gray-700 transition-colors duration-300 group-hover/card:text-gray-900">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
 
-              {/* Requirements */}
-              <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <p className="text-xs text-yellow-800">
-                  <Shield className="w-4 h-4 inline mr-1" />
-                  {plan.requirements}
-                </p>
-              </div>
+                  {plan.features.length > 5 && (
+                    <button
+                      onClick={() => togglePlan(index)}
+                      className="text-sm text-blue-600 hover:text-blue-800 font-medium mt-1 sm:mt-2 flex items-center transition-colors duration-300"
+                    >
+                      {expandedPlans[index]
+                        ? 'Show less'
+                        : `+${plan.features.length - 5} more features`}
+                      <ChevronDown
+                        className={`w-4 h-4 ml-1 transform transition-all duration-300 ${expandedPlans[index] ? 'rotate-180' : ''
+                          }`}
+                      />
+                    </button>
+                  )}
+                </ul>
 
-              {/* Link Button for Navigation to /signup */}
-              <Link href={'/signup'}
-                className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${
-                  plan.popular
-                    ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
-                    : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
-                }`}
-              >
-                <span className="relative z-10">{plan.buttonText}</span>
-                {plan.popular && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-700"></div>
-                )}
-              </Link>
-            </div>
-          ))}
-        </div>
+                {/* Requirements */}
+                <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-xs text-yellow-800">
+                    <Shield className="w-4 h-4 inline mr-1" />
+                    {plan.requirements}
+                  </p>
+                </div>
 
-        {/* Feature Highlights */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-animate id="feature-highlights">
-          <div className={`text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl transition-all duration-1000 delay-300 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
-            <Shield className="w-8 h-8 mx-auto mb-3 text-green-600" />
-            <h4 className="font-semibold text-gray-900 mb-2">Azure Security</h4>
-            <p className="text-sm text-gray-600">Enterprise-grade security with Microsoft Azure platform</p>
-          </div>
-          <div className={`text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl transition-all duration-1000 delay-400 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
-            <MessageSquare className="w-8 h-8 mx-auto mb-3 text-blue-600" />
-            <h4 className="font-semibold text-gray-900 mb-2">Multi-Channel Support</h4>
-            <p className="text-sm text-gray-600">Email, WhatsApp, and internal chat integration</p>
-          </div>
-          <div className={`text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl transition-all duration-1000 delay-500 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
-            <Users className="w-8 h-8 mx-auto mb-3 text-purple-600" />
-            <h4 className="font-semibold text-gray-900 mb-2">Team Management</h4>
-            <p className="text-sm text-gray-600">User licenses with supervisor and admin controls</p>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-6 sm:mt-8" data-animate id="pricing-footer">
-          <div className={`transition-all duration-1000 delay-600 ${getAnimationClass('pricing-footer', 'opacity-100 translate-y-0')}`}>
-            <p className="text-gray-600 mb-2 sm:mb-3">
-              All plans include company verification and dedicated IT support
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
-              {["Azure Platform", "Secure Integration", "Expert Support"].map((feature, index) => (
-                <span
-                  key={index}
-                  className="flex items-center animate-pulse"
-                  style={{ animationDelay: `${index * 0.2}s` }}
+                {/* Link Button for Navigation to /signup */}
+                <Link href={'/signup'}
+                  className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${plan.popular
+                      ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
+                      : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
+                    }`}
                 >
-                  <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
-                  {feature}
-                </span>
-              ))}
+                  <span className="relative z-10">{plan.buttonText}</span>
+                  {plan.popular && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-700"></div>
+                  )}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Feature Highlights */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-animate id="feature-highlights">
+            <div className={`text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl transition-all duration-1000 delay-300 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+              <Shield className="w-8 h-8 mx-auto mb-3 text-green-600" />
+              <h4 className="font-semibold text-gray-900 mb-2">Azure Security</h4>
+              <p className="text-sm text-gray-600">Enterprise-grade security with Microsoft Azure platform</p>
+            </div>
+            <div className={`text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl transition-all duration-1000 delay-400 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+              <MessageSquare className="w-8 h-8 mx-auto mb-3 text-blue-600" />
+              <h4 className="font-semibold text-gray-900 mb-2">Multi-Channel Support</h4>
+              <p className="text-sm text-gray-600">Email, WhatsApp, and internal chat integration</p>
+            </div>
+            <div className={`text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl transition-all duration-1000 delay-500 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
+              <Users className="w-8 h-8 mx-auto mb-3 text-purple-600" />
+              <h4 className="font-semibold text-gray-900 mb-2">Team Management</h4>
+              <p className="text-sm text-gray-600">User licenses with supervisor and admin controls</p>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center mt-6 sm:mt-8" data-animate id="pricing-footer">
+            <div className={`transition-all duration-1000 delay-600 ${getAnimationClass('pricing-footer', 'opacity-100 translate-y-0')}`}>
+              <p className="text-gray-600 mb-2 sm:mb-3">
+                All plans include company verification and dedicated IT support
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
+                {["Azure Platform", "Secure Integration", "Expert Support"].map((feature, index) => (
+                  <span
+                    key={index}
+                    className="flex items-center animate-pulse"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  >
+                    <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
+                    {feature}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
@@ -1264,7 +1262,7 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
+         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {advantages.map((advantage, index) => (
               <div
                 key={index}
