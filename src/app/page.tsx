@@ -999,8 +999,8 @@ const CareTrackApp = () => {
                 data-animate
                 id={`pricing-${index}`}
                 className={`relative bg-gradient-to-br ${plan.color} border-2 ${plan.popular
-                    ? 'border-purple-500 lg:scale-105 shadow-2xl'
-                    : 'border-gray-200'
+                  ? 'border-purple-500 lg:scale-105 shadow-2xl'
+                  : 'border-gray-200'
                   } rounded-3xl p-4 sm:p-6 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 group/card ${getAnimationClass(`pricing-${index}`, 'opacity-100 translate-y-0')}`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
@@ -1081,8 +1081,8 @@ const CareTrackApp = () => {
                 {/* Link Button for Navigation to /signup */}
                 <Link href={'/signup'}
                   className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${plan.popular
-                      ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
-                      : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
+                    ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
+                    : 'bg-white text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md'
                     }`}
                 >
                   <span className="relative z-10">{plan.buttonText}</span>
@@ -1262,7 +1262,7 @@ const CareTrackApp = () => {
             </div>
           </div>
 
-         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {advantages.map((advantage, index) => (
               <div
                 key={index}
@@ -1502,10 +1502,14 @@ const CareTrackApp = () => {
           <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-8 sm:pt-12">
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <div className="flex items-center space-x-2 mb-4 sm:mb-0 group">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Heart className="w-4 h-4 text-white group-hover:animate-pulse" />
+                <div className="flex items-center space-x-3 group bg-white hover:bg-white/20 px-3 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                  <img
+                    src="/caretrack_logo.png"
+                    alt="CareTrack Logo"
+                    className="h-12 w-auto transform group-hover:scale-110 transition-all duration-300"
+                  />
                 </div>
-                <span className="text-lg font-bold group-hover:text-blue-400 transition-colors duration-300">CareTrack</span>
+
               </div>
               <p className="text-sm text-gray-400">
                 © {new Date().getFullYear()} Sthiram Services LLP. All rights reserved.
