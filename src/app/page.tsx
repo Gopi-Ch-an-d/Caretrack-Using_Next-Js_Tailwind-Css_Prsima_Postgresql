@@ -2,6 +2,7 @@
 
 import { useState, useEffect, JSX } from 'react';
 import Link from 'next/link';
+import { motion } from "framer-motion";
 import Image from 'next/image';
 import {
   Heart,
@@ -568,12 +569,35 @@ const CareTrackApp = () => {
               )}`}
             >
               <div className="w-2 h-2 bg-green-500 rounded-full animate-ping flex-shrink-0"></div>
-              <span className="text-xs sm:text-sm font-medium text-gray-700 leading-snug">
-                Trusted by Medical Assistance Companies Worldwide
-              </span>
-              <Sparkles className="w-4 h-4 text-purple-500 animate-spin-slow flex-shrink-0" />
-            </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs sm:text-sm text-gray-700 leading-snug font-bold">
+                  Trusted by Medical Assistance Companies Worldwide
+                </span>
 
+                {/* Dynamic Sparkles */}
+                <div className="relative flex items-center">
+                  {[...Array(4)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: [0, 1, 0],
+                        scale: [0, 1.2, 0],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.4,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute"
+                    >
+                      <Sparkles className="w-4 h-4 text-purple-500" />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">

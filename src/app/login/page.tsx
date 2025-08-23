@@ -79,7 +79,7 @@ export default function LoginPage() {
     try {
       // Simulate API call for password reset
       await new Promise(resolve => setTimeout(resolve, 2000))
-      
+
       toast.success('Password reset successful!')
       setIsForgotPassword(false)
       // Clear form
@@ -155,12 +155,12 @@ export default function LoginPage() {
         {/* Logo Section - Responsive positioning */}
         <div className="w-full lg:w-1/3 lg:pr-8 mb-8 lg:mb-0 flex justify-center lg:justify-start lg:sticky lg:top-8">
           <div className="inline-flex items-center space-x-3">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-gray-900">CareTrack</div>
-              <div className="text-xs sm:text-sm text-gray-500">Powered by Sthiram</div>
+            <div className="flex items-center space-x-3 group">
+              <img
+                src="/caretrack_logo.png"
+                alt="CareTrack Logo"
+                className="h-16 w-auto transform group-hover:scale-110 transition-all duration-300"
+              />
             </div>
           </div>
         </div>
@@ -173,8 +173,8 @@ export default function LoginPage() {
                 {isForgotPassword ? 'Reset Your Password' : 'Welcome Back'}
               </CardTitle>
               <CardDescription className="text-sm sm:text-base">
-                {isForgotPassword 
-                  ? 'Enter your email and new password details' 
+                {isForgotPassword
+                  ? 'Enter your email and new password details'
                   : 'Sign in to your CareTrack account'
                 }
               </CardDescription>

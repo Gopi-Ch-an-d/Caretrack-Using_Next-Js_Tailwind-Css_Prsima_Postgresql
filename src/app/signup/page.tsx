@@ -27,25 +27,25 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Client-side validation
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match')
       return
     }
-    
+
     if (formData.password.length < 8) {
       toast.error('Password must be at least 8 characters')
       return
     }
-    
+
     if (!agreed) {
       toast.error('Please agree to the Terms of Service and Privacy Policy')
       return
     }
 
     setIsLoading(true)
-    
+
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -85,7 +85,7 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4">
-      <Toaster 
+      <Toaster
         position="top-center"
         toastOptions={{
           style: {
@@ -115,12 +115,12 @@ export default function SignupPage() {
         {/* Logo Section - Responsive positioning */}
         <div className="w-full lg:w-1/3 lg:pr-8 mb-8 lg:mb-0 flex justify-center lg:justify-start lg:sticky lg:top-8">
           <div className="inline-flex items-center space-x-3">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-gray-900">CareTrack</div>
-              <div className="text-xs sm:text-sm text-gray-500">Powered by Sthiram</div>
+            <div className="flex items-center space-x-3 group">
+              <img
+                src="/caretrack_logo.png"
+                alt="CareTrack Logo"
+                className="h-16 w-auto transform group-hover:scale-110 transition-all duration-300"
+              />
             </div>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function SignupPage() {
                           type="text"
                           placeholder="Enter your full name"
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full pl-10 pr-3 py-2.5 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                           required
                           minLength={3}
@@ -176,7 +176,7 @@ export default function SignupPage() {
                           type="email"
                           placeholder="Enter your email"
                           value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full pl-10 pr-3 py-2.5 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                           required
                         />
@@ -191,7 +191,7 @@ export default function SignupPage() {
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Create a password"
                           value={formData.password}
-                          onChange={(e) => setFormData({...formData, password: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                           className="w-full pl-10 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                           required
                           minLength={8}
@@ -215,7 +215,7 @@ export default function SignupPage() {
                           type={showConfirmPassword ? 'text' : 'password'}
                           placeholder="Confirm your password"
                           value={formData.confirmPassword}
-                          onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                           className="w-full pl-10 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                           required
                           minLength={8}
@@ -232,13 +232,13 @@ export default function SignupPage() {
                     </div>
 
                     <div className="flex items-start space-x-2 pt-1">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         id="terms"
-                        className="mt-1 rounded border-gray-300 w-4 h-4 flex-shrink-0" 
+                        className="mt-1 rounded border-gray-300 w-4 h-4 flex-shrink-0"
                         checked={agreed}
                         onChange={(e) => setAgreed(e.target.checked)}
-                        required 
+                        required
                       />
                       <label htmlFor="terms" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                         I agree to the{' '}
@@ -252,7 +252,7 @@ export default function SignupPage() {
                       </label>
                     </div>
 
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2.5 sm:py-3 px-4 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-sm sm:text-base mt-4 sm:mt-6"
                       disabled={isLoading}
