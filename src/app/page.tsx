@@ -727,7 +727,7 @@ const CareTrackApp = () => {
             id="features-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('features-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in">
+              <h2 className="relative inline-block text-center text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in">
                 <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
                   Care
                 </span>
@@ -735,7 +735,12 @@ const CareTrackApp = () => {
                   Track
                 </span>
                 <span className="text-gray-900"> Features</span>
+
+                {/* underline */}
+                <span className="absolute left-1/2 -bottom-1 h-[3px] w-0 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
+
+
 
               <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive tools designed to streamline your medical assistance operations.
