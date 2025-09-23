@@ -1756,23 +1756,7 @@ const CareTrackApp = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-1">
-                <span className="text-gray-400 text-sm mr-3">Follow us:</span>
-                {[
-                  { Icon: Facebook, color: "hover:text-blue-400" },
-                  { Icon: Twitter, color: "hover:text-sky-400" },
-                  { Icon: Instagram, color: "hover:text-pink-400" },
-                  { Icon: Linkedin, color: "hover:text-blue-500" }
-                ].map(({ Icon, color }, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className={`w-10 h-10 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl flex items-center justify-center text-gray-400 ${color} transition-all duration-300 hover:scale-110 hover:-translate-y-1 border border-gray-700/50 hover:border-gray-600/50`}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
+              
             </div>
           </div>
         </div>
