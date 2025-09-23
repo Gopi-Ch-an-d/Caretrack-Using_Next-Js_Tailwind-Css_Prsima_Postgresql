@@ -105,7 +105,7 @@ const CareTrackApp = () => {
       setScrolled(window.scrollY > 20);
 
       // Update active section based on scroll position
-      const sections = ['home', 'features', 'solutions', 'pricing', 'contact'];
+      const sections = ['home', 'features', 'solutions', 'about', 'pricing', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
