@@ -30,7 +30,10 @@ import {
   DollarSign,
   Activity,
   ChevronDown,
-  Zap
+  Zap,
+  Cloud, Lock,
+  ChevronRight,
+  TrendingUp
 } from 'lucide-react';
 import React from 'react';
 
@@ -120,10 +123,6 @@ const CareTrackApp = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-
-
-
 
   const [animatedElements, setAnimatedElements] = useState(new Set());
 
@@ -457,6 +456,12 @@ const CareTrackApp = () => {
                     }`}
                 >
                   {item.label}
+                  {/* Top line */}
+                  <span
+                    className={`absolute -top-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                  ></span>
+                  {/* Bottom line */}
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
@@ -521,7 +526,7 @@ const CareTrackApp = () => {
                       smoothScroll(item.id);
                       setIsMenuOpen(false);
                     }}
-                    className={`text-left text-gray-700 hover:text-blue-600 font-medium px-4 py-2 transition-all duration-300 transform hover:translate-x-2 hover:bg-blue-50 rounded-lg mx-2 ${activeSection === item.id ? 'text-blue-600 bg-blue-50' : ''
+                    className={`relative text-left text-gray-700 hover:text-blue-600 font-medium px-4 py-2 transition-all duration-300 transform hover:translate-x-2 hover:bg-blue-50 rounded-lg mx-2 ${activeSection === item.id ? 'text-blue-600 bg-blue-50' : ''
                       }`}
                     style={{
                       animationDelay: `${index * 0.1}s`,
@@ -529,6 +534,16 @@ const CareTrackApp = () => {
                     }}
                   >
                     {item.label}
+                    {/* Top line for mobile */}
+                    <span
+                      className={`absolute top-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    ></span>
+                    {/* Bottom line for mobile */}
+                    <span
+                      className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    ></span>
                   </button>
                 ))}
                 <div className="flex flex-col space-y-2 px-4 pt-4 border-t">
@@ -712,9 +727,16 @@ const CareTrackApp = () => {
             id="features-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('features-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in">
-                CareTrack Features
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Care
+                </span>
+                <span className="bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Track
+                </span>
+                <span className="text-gray-900"> Features</span>
               </h2>
+
               <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive tools designed to streamline your medical assistance operations.
               </p>
@@ -816,9 +838,16 @@ const CareTrackApp = () => {
             id="solutions-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('solutions-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                CareTrack Solutions
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Care
+                </span>
+                <span className="bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Track
+                </span>
+                <span className="text-gray-900"> Solutions</span>
               </h2>
+
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Built to serve different types of medical assistance organizations with tailored solutions.
               </p>
@@ -904,7 +933,15 @@ const CareTrackApp = () => {
           >
             <div className={`grid md:grid-cols-2 gap-8 sm:gap-12 items-center transition-all duration-1000 ${getAnimationClass('about', 'opacity-100 translate-y-0')}`}>
               <div>
-                <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 animate-fade-in">Our Mission</h3>
+                <h3 className="text-3xl sm:text-4xl font-bold mb-4 animate-fade-in">
+                  <span className="bg-gradient-to-r from-violet-500 to-pink-600 bg-clip-text text-transparent">
+                    Our
+                  </span>
+                  <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                    Mission
+                  </span>
+                </h3>
+
                 <p className="text-lg text-gray-600 mb-6 animate-fade-in-up delay-200">
                   To empower medical assistance companies worldwide with technology that simplifies operations, improves patient care, and reduces operational costs.
                 </p>
@@ -1006,9 +1043,18 @@ const CareTrackApp = () => {
           {/* Header */}
           <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
             <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Choose Your Plan
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Choose
+                </span>
+                <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Your
+                </span>
+                <span className="ml-2 text-gray-900">
+                  Plan
+                </span>
               </h2>
+
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
               </p>
@@ -1122,17 +1168,38 @@ const CareTrackApp = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-animate id="feature-highlights">
             <div className={`text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl transition-all duration-1000 delay-300 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
               <Shield className="w-8 h-8 mx-auto mb-3 text-green-600" />
-              <h4 className="font-semibold text-gray-900 mb-2">Azure Security</h4>
+              <h4 className="font-semibold mb-2">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Azure
+                </span>
+                <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Security
+                </span>
+              </h4>
               <p className="text-sm text-gray-600">Enterprise-grade security with Microsoft Azure platform</p>
             </div>
             <div className={`text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl transition-all duration-1000 delay-400 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
               <MessageSquare className="w-8 h-8 mx-auto mb-3 text-blue-600" />
-              <h4 className="font-semibold text-gray-900 mb-2">Multi-Channel Support</h4>
+              <h4 className="font-semibold mb-2">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Multi-Channel
+                </span>
+                <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h4>
               <p className="text-sm text-gray-600">Email, WhatsApp, and internal chat integration</p>
             </div>
             <div className={`text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl transition-all duration-1000 delay-500 ${getAnimationClass('feature-highlights', 'opacity-100 translate-y-0')}`}>
               <Users className="w-8 h-8 mx-auto mb-3 text-purple-600" />
-              <h4 className="font-semibold text-gray-900 mb-2">Team Management</h4>
+              <h4 className="font-semibold mb-2">
+                <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
+                  Team
+                </span>
+                <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
+                  Management
+                </span>
+              </h4>
               <p className="text-sm text-gray-600">User licenses with supervisor and admin controls</p>
             </div>
           </div>
@@ -1140,21 +1207,29 @@ const CareTrackApp = () => {
           {/* Footer */}
           <div className="text-center mt-6 sm:mt-8" data-animate id="pricing-footer">
             <div className={`transition-all duration-1000 delay-600 ${getAnimationClass('pricing-footer', 'opacity-100 translate-y-0')}`}>
-              <p className="text-gray-600 mb-2 sm:mb-3">
-                All plans include company verification and dedicated IT support
+              <p className="mb-2 sm:mb-3">
+                <span className="bg-gradient-to-r from-violet-500 to-pink-600 bg-clip-text text-transparent">
+                  All plans include company verification and dedicated IT support
+                </span>
               </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-gray-500">
-                {["Azure Platform", "Secure Integration", "Expert Support"].map((feature, index) => (
+
+              <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm">
+                {[
+                  { label: "Azure Platform", icon: <Cloud className="w-5 h-5 mr-1" />, color: "text-blue-500" },
+                  { label: "Secure Integration", icon: <Lock className="w-5 h-5 mr-1" />, color: "text-green-500" },
+                  { label: "Expert Support", icon: <Users className="w-5 h-5 mr-1" />, color: "text-red-500" },
+                ].map((feature, index) => (
                   <span
                     key={index}
-                    className="flex items-center animate-pulse"
+                    className={`flex items-center animate-pulse ${feature.color}`}
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
-                    <Check className="w-3 sm:w-4 h-3 sm:h-4 mr-1 text-green-500" />
-                    {feature}
+                    {feature.icon}
+                    {feature.label}
                   </span>
                 ))}
               </div>
+
             </div>
           </div>
         </div>
@@ -1171,13 +1246,20 @@ const CareTrackApp = () => {
             data-animate
             id="testimonials-header"
           >
-            <div className={`transition-all duration-1000 ${getAnimationClass('testimonials-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                What Our Clients Say
+            <div className="flex justify-center">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 flex flex-wrap justify-center text-center">
+                {["What", "Our", "Clients", "Say"].map((word, index) => {
+                  const colors = ["text-blue-500", "text-green-500", "text-purple-500", "text-red-500"];
+                  return (
+                    <span
+                      key={index}
+                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
               </h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                Join medical assistance companies who trust CareTrack for their operations.
-              </p>
             </div>
           </div>
 
@@ -1277,9 +1359,20 @@ const CareTrackApp = () => {
             id="advantages-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('advantages-header', 'opacity-100 translate-y-0')}`}>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
-                CareTrack Advantages
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 flex flex-wrap justify-center text-center">
+                {["CareTrack", "Advantages"].map((word, index) => {
+                  const colors = ["text-blue-500", "text-green-500"]; // Different colors per word
+                  return (
+                    <span
+                      key={index}
+                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
               </h3>
+
               <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
                 Smart Tools for Smart Assistance - Everything you need to excel in medical assistance operations.
               </p>
@@ -1325,8 +1418,18 @@ const CareTrackApp = () => {
               id="contact-info"
               className={`transition-all duration-1000 ${getAnimationClass('contact-info', 'opacity-100 translate-y-0')}`}
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 animate-fade-in">
-                Get In Touch
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 flex flex-wrap justify-center text-center animate-fade-in">
+                {["Get", "In", "Touch"].map((word, index) => {
+                  const colors = ["text-blue-500", "text-green-500", "text-purple-500"]; // Different colors
+                  return (
+                    <span
+                      key={index}
+                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 animate-fade-in-up delay-300">
                 Have questions or need assistance? Our team is here to help you with any inquiries about CareTrack.
@@ -1372,15 +1475,15 @@ const CareTrackApp = () => {
 
               <div className="flex space-x-3 sm:space-x-4 mt-6 sm:mt-8">
                 {[
-                  { icon: <Facebook className="w-4 sm:w-5 h-4 sm:h-5" />, href: "#" },
-                  { icon: <Twitter className="w-4 sm:w-5 h-4 sm:h-5" />, href: "#" },
-                  { icon: <Instagram className="w-4 sm:w-5 h-4 sm:h-5" />, href: "#" },
-                  { icon: <Linkedin className="w-4 sm:w-5 h-4 sm:h-5" />, href: "#" }
+                  { icon: <Facebook className="w-4 sm:w-5 h-4 sm:h-5 text-white" />, href: "#", bgColor: "bg-blue-600", hoverBg: "hover:bg-blue-800" },
+                  { icon: <Twitter className="w-4 sm:w-5 h-4 sm:h-5 text-white" />, href: "#", bgColor: "bg-sky-400", hoverBg: "hover:bg-sky-600" },
+                  { icon: <Instagram className="w-4 sm:w-5 h-4 sm:h-5 text-white" />, href: "#", bgColor: "bg-pink-500", hoverBg: "hover:bg-pink-700" },
+                  { icon: <Linkedin className="w-4 sm:w-5 h-4 sm:h-5 text-white" />, href: "#", bgColor: "bg-blue-700", hoverBg: "hover:bg-blue-900" },
                 ].map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
-                    className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 hover:scale-110 transition-all duration-300 animate-bounce-in"
+                    className={`w-8 sm:w-10 h-8 sm:h-10 ${social.bgColor} ${social.hoverBg} rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 animate-bounce`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {social.icon}
@@ -1394,7 +1497,19 @@ const CareTrackApp = () => {
               id="contact-form"
               className={`bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${getAnimationClass('contact-form', 'opacity-100 translate-y-0')}`}
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Send us a message</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-6 flex flex-wrap justify-center text-center">
+                {["Send", "us", "a", "message"].map((word, index) => {
+                  const colors = ["text-blue-500", "text-green-500", "text-purple-500", "text-red-500"];
+                  return (
+                    <span
+                      key={index}
+                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
+              </h3>
               <form className="space-y-4 sm:space-y-6">
                 {[
                   { id: "name", label: "Name", type: "text", placeholder: "Your name" },
@@ -1458,63 +1573,130 @@ const CareTrackApp = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12 relative overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+      <footer className="relative bg-gray-900 text-white overflow-hidden">
+        {/* Animated background layers */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-gray-900 to-purple-900/20"></div>
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"></div>
+          {/* Floating particles effect */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-purple-400/40 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-green-400/30 rounded-full animate-pulse delay-500"></div>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+        {/* Main footer content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          {/* Top section with logo and tagline */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-4 mb-6 group">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-3 shadow-2xl transform group-hover:scale-105 transition-all duration-500 border border-gray-200/20">
+                  <img
+                    src="/caretrack_logo.png"
+                    alt="CareTrack Logo"
+                    className="h-16 w-auto object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      // Fallback to icon if logo doesn't load
+                      target.style.display = 'none';
+                      if (target.nextElementSibling) {
+                        (target.nextElementSibling as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  {/* Fallback icon (hidden by default) */}
+                  <div className="hidden w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl items-center justify-center">
+                    <Heart className="w-8 h-8 text-white" fill="currentColor" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+              Empowering healthcare providers with intelligent case management,
+              cost optimization, and seamless care coordination.
+            </p>
+          </div>
+
+          {/* Stats section */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
+            {[
+              { icon: Users, label: "Active Users", value: "50K+" },
+              { icon: Shield, label: "Cases Managed", value: "1M+" },
+              { icon: TrendingUp, label: "Cost Savings", value: "$100M+" },
+              { icon: Heart, label: "Lives Improved", value: "2M+" }
+            ].map((stat, index) => (
+              <div key={index} className="text-center group">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-7 h-7 text-blue-400" />
+                </div>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-gray-400 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Links grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {[
               {
                 title: "Platform",
                 links: [
-                  { name: "Home", href: "#home" },
-                  { name: "About", href: "#about" },
+                  { name: "Dashboard", href: "#home" },
                   { name: "Features", href: "#features" },
                   { name: "Solutions", href: "#solutions" },
+                  { name: "Integrations", href: "#integrations" },
                   { name: "Pricing", href: "#pricing" }
                 ]
               },
               {
                 title: "Services",
                 links: [
-                  { name: "Case Management", href: "#" },
-                  { name: "Cost Containment", href: "#" },
-                  { name: "Provider Network", href: "#" },
-                  { name: "Reporting & Analytics", href: "#" }
+                  { name: "Case Management", href: "#case-management" },
+                  { name: "Cost Containment", href: "#cost-containment" },
+                  { name: "Provider Network", href: "#provider-network" },
+                  { name: "Analytics & Reporting", href: "#analytics" },
+                  { name: "Compliance Tools", href: "#compliance" }
+                ]
+              },
+              {
+                title: "Resources",
+                links: [
+                  { name: "Documentation", href: "#docs" },
+                  { name: "API Reference", href: "#api" },
+                  { name: "Case Studies", href: "#case-studies" },
+                  { name: "Webinars", href: "#webinars" },
+                  { name: "Support Center", href: "#support" }
                 ]
               },
               {
                 title: "Company",
                 links: [
-                  { name: "About Us", href: "#" },
-                  { name: "Careers", href: "#" },
-                  { name: "Blog", href: "#" },
-                  { name: "Contact", href: "#" }
-                ]
-              },
-              {
-                title: "Legal",
-                links: [
-                  { name: "Privacy Policy", href: "#" },
-                  { name: "Terms of Service", href: "#" },
-                  { name: "Security", href: "#" },
-                  { name: "GDPR", href: "#" }
+                  { name: "About Us", href: "#about" },
+                  { name: "Features", href: "#features" },
+                  { name: "Solutions", href: "#solutions" },
+                  { name: "About", href: "#about" },
+                  { name: "Contact", href: "#contact" }
                 ]
               }
             ].map((column, columnIndex) => (
-              <div key={columnIndex}>
-                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{column.title}</h3>
-                <ul className="space-y-1 sm:space-y-2">
+              <div key={columnIndex} className="space-y-4">
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  {column.title}
+                  <div className="ml-2 w-8 h-px bg-gradient-to-r from-blue-400 to-transparent"></div>
+                </h3>
+                <ul className="space-y-3">
                   {column.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <a
                         href={link.href}
-                        className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
+                        className="group flex items-center text-gray-400 hover:text-white transition-all duration-300 text-sm"
                       >
-                        {link.name}
+                        <ChevronRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {link.name}
+                        </span>
                       </a>
                     </li>
                   ))}
@@ -1523,27 +1705,69 @@ const CareTrackApp = () => {
             ))}
           </div>
 
-          <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-8 sm:pt-12">
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <div className="flex items-center space-x-2 mb-4 sm:mb-0 group">
-                <div className="flex items-center space-x-3 group bg-white hover:bg-white/20 px-3 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  <img
-                    src="/caretrack_logo.png"
-                    alt="CareTrack Logo"
-                    className="h-12 w-auto transform group-hover:scale-110 transition-all duration-300"
-                  />
+          {/* Contact section */}
+          <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-2xl p-6 sm:p-8 mb-12 backdrop-blur-sm border border-gray-700/50">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="flex items-center space-x-4 group">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
+                  <Mail className="w-6 h-6 text-blue-400" />
                 </div>
-
+                <div>
+                  <div className="text-white font-medium">Email Us</div>
+                  <div className="text-gray-400 text-sm">ganesh@sthiramservices.com</div>
+                </div>
               </div>
-              <p className="text-sm text-gray-400">
-                © {new Date().getFullYear()} Sthiram Services LLP. All rights reserved.
-              </p>
-              <div className="flex space-x-4 mt-4 sm:mt-0">
-                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+
+              <div className="flex items-center space-x-4 group">
+                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
+                  <Phone className="w-6 h-6 text-green-400" />
+                </div>
+                <div>
+                  <div className="text-white font-medium">Call Us</div>
+                  <div className="text-gray-400 text-sm">+91-7207349050</div>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4 group">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center group-hover:bg-purple-500/30 transition-colors duration-300">
+                  <MapPin className="w-6 h-6 text-purple-400" />
+                </div>
+                <div>
+                  <div className="text-white font-medium">Visit Us</div>
+                  <div className="text-gray-400 text-sm">Sthiram Services LLP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom section */}
+          <div className="border-t border-gray-800/60 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+              <div className="flex items-center space-x-4">
+                <p className="text-gray-400 text-sm">
+                  © {new Date().getFullYear()} Sthiram Services LLP. All rights reserved.
+                </p>
+                <div className="hidden sm:flex items-center space-x-4 text-sm">
+                  <a href="#privacy" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a>
+                  <span className="text-gray-600">•</span>
+                  <a href="#terms" className="text-gray-400 hover:text-white transition-colors duration-300">Terms</a>
+                  <span className="text-gray-600">•</span>
+                  <a href="#security" className="text-gray-400 hover:text-white transition-colors duration-300">Security</a>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-1">
+                <span className="text-gray-400 text-sm mr-3">Follow us:</span>
+                {[
+                  { Icon: Facebook, color: "hover:text-blue-400" },
+                  { Icon: Twitter, color: "hover:text-sky-400" },
+                  { Icon: Instagram, color: "hover:text-pink-400" },
+                  { Icon: Linkedin, color: "hover:text-blue-500" }
+                ].map(({ Icon, color }, index) => (
                   <a
                     key={index}
                     href="#"
-                    className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                    className={`w-10 h-10 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl flex items-center justify-center text-gray-400 ${color} transition-all duration-300 hover:scale-110 hover:-translate-y-1 border border-gray-700/50 hover:border-gray-600/50`}
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -1552,6 +1776,9 @@ const CareTrackApp = () => {
             </div>
           </div>
         </div>
+
+        {/* Bottom gradient line */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"></div>
       </footer>
 
       {/* Contact Modal */}

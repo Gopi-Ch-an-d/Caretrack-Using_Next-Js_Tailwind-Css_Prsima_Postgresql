@@ -8,7 +8,7 @@ interface SEOProps {
 }
 
 export function generateSEO({
-  title = 'CareTrack - Healthcare Management Platform',
+  title = 'CareTrack - Powered By Sthiram',
   description = 'Transform your healthcare management with CareTrack powered by Sthiram. Track health records, manage appointments, and improve your health journey.',
   canonical = 'https://caretrack.sthiram.com',
   ogImage = '/images/og-image.jpg'
