@@ -100,29 +100,33 @@ const CareTrackApp = () => {
   }, []);
 
   // Handle scroll effects
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 20);
 
-      // Update active section based on scroll position
-      const sections = ['home', 'features', 'solutions', 'about', 'pricing', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+    // Improved active section detection
+    const sections = ['home', 'features', 'solutions', 'about', 'pricing', 'contact'];
+    let currentSection = 'home';
+
+    // Find the section that's most visible in viewport
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const element = document.getElementById(sections[i]);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        // Check if section's top is above the center of viewport
+        if (rect.top <= window.innerHeight / 2) {
+          currentSection = sections[i];
+          break;
         }
-        return false;
-      });
-
-      if (currentSection) {
-        setActiveSection(currentSection);
       }
-    };
+    }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    setActiveSection(currentSection);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
   const [animatedElements, setAnimatedElements] = useState(new Set());
 
