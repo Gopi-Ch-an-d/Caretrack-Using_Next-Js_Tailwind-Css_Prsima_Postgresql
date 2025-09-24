@@ -67,7 +67,7 @@ const CareTrackApp = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 
-  // Mouse tracking for parallax effects
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -80,7 +80,7 @@ const CareTrackApp = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Intersection Observer for scroll animations
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -99,34 +99,32 @@ const CareTrackApp = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Handle scroll effects
-useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 20);
 
-    // Improved active section detection
-    const sections = ['home', 'features', 'solutions', 'about', 'pricing', 'contact'];
-    let currentSection = 'home';
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
 
-    // Find the section that's most visible in viewport
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const element = document.getElementById(sections[i]);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        // Check if section's top is above the center of viewport
-        if (rect.top <= window.innerHeight / 2) {
-          currentSection = sections[i];
-          break;
+      const sections = ['home', 'features', 'solutions', 'about', 'pricing', 'contact'];
+      let currentSection = 'home';
+
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2) {
+            currentSection = sections[i];
+            break;
+          }
         }
       }
-    }
 
-    setActiveSection(currentSection);
-  };
+      setActiveSection(currentSection);
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const [animatedElements, setAnimatedElements] = useState(new Set());
 
@@ -224,6 +222,8 @@ useEffect(() => {
     return () => observer.disconnect();
   }, []);
 
+  {/*-------------------------------------------------SERVICE--------------------------------------- */ }
+
   const services: Service[] = [
     {
       title: "Case Coordination Tracking",
@@ -305,6 +305,8 @@ useEffect(() => {
     }
   ];
 
+  {/*----------------------------------------------TESTIMONIAL--------------------------------------- */ }
+
   const testimonials: Testimonial[] = [
     {
       name: "Dr. Rajesh Kumar",
@@ -328,6 +330,8 @@ useEffect(() => {
       rating: 5
     }
   ];
+
+  {/*----------------------------------------------ADVANTAGES--------------------------------------- */ }
 
   const advantages = [
     {
@@ -399,7 +403,6 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* Animated Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div
           className="absolute w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"
@@ -426,7 +429,7 @@ useEffect(() => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
+
             <div className="flex items-center space-x-2">
               <div
                 className="flex items-center space-x-2 cursor-pointer group"
@@ -460,12 +463,12 @@ useEffect(() => {
                     }`}
                 >
                   {item.label}
-                  {/* Top line */}
+                  
                   <span
                     className={`absolute -top-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                   ></span>
-                  {/* Bottom line */}
+                  
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
@@ -474,7 +477,6 @@ useEffect(() => {
               ))}
             </div>
 
-            {/* Auth Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
                 href="/login"
@@ -484,7 +486,6 @@ useEffect(() => {
               </Link>
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -538,12 +539,12 @@ useEffect(() => {
                     }}
                   >
                     {item.label}
-                    {/* Top line for mobile */}
+                  
                     <span
                       className={`absolute top-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
                         }`}
                     ></span>
-                    {/* Bottom line for mobile */}
+                    
                     <span
                       className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
                         }`}
@@ -564,18 +565,17 @@ useEffect(() => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/*-----------------------------------------------HERO--------------------------------------- */}
+
       <section id="home" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen flex items-center">
-        {/* Animated Background Grid */}
         <div className="absolute inset-0 bg-grid-pattern opacity-5 animate-pulse"></div>
 
-        {/* Floating Animation Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20 animate-float"></div>
         <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full opacity-30 animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-full opacity-25 animate-float-reverse"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:py-24 relative z-10">
-          {/* Trusted by badge */}
+        
           <div
             className="flex justify-center mb-8"
             data-animate
@@ -627,43 +627,82 @@ useEffect(() => {
             >
               <div className={`transition-all duration-1000 delay-300 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0')}`}>
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                  <span className="inline-block animate-fade-in">CareTrack</span>
-                  <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+                  <span className="inline-block animate-fade-in">
+                    <span className="bg-gradient-to-r from-violet-600 to-blue-900 bg-clip-text text-transparent font-bold">
+                      Care
+                    </span>
+                    <span className="bg-gradient-to-r from-pink-500 to-purple-700 bg-clip-text text-transparent font-bold ml-1">
+                      Track
+                    </span>
+                  </span>
+
+                  <span className="block text-black text-4xl">
                     Streamlined Case Management
                   </span>
-                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 mt-2 animate-fade-in-up">
+
+
+                  <span className="block text-4xl font-semibold text-gray-700 mt-2 animate-fade-in-up">
                     for Medical Assistance Companies
                   </span>
+
                 </h1>
               </div>
 
-              <div className={`transition-all duration-1000 delay-500 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0')}`}>
+              <div
+                className={`transition-all duration-1000 delay-500 ${getAnimationClass(
+                  'hero-content',
+                  'opacity-100 translate-y-0'
+                )}`}
+              >
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                  🚀 Take Your Assistance Operations to the Next Level with CareTrack. An advanced CRM &amp; MIS platform designed to optimize patient care, operational efficiency, and cost containment for global assistance providers. <strong>One platform. Zero hassle. 100% efficiency.</strong>
+                  🚀 Take Your <span className="text-violet-600 font-semibold">Assistance Operations</span> to the Next Level with
+                  <span className="text-pink-600 font-bold"> CareTrack</span>.
+                  An advanced <span className="text-indigo-600 font-semibold">CRM &amp; MIS platform</span> designed to optimize
+                  <span className="text-green-600 font-semibold"> patient care</span>,
+                  <span className="text-blue-600 font-semibold"> operational efficiency</span>, and
+                  <span className="text-red-600 font-semibold"> cost containment</span> for global assistance providers.
+                  <span className="text-black font-bold"> One platform.</span>
+                  <span className="text-emerald-600 font-bold"> Zero hassle.</span>
+                  <span className="text-violet-700 font-bold"> 100% efficiency.</span>
                 </p>
               </div>
 
-              <div className={`bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4 transition-all duration-1000 delay-700 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0 animate-glow')}`}>
+
+              <div
+                className={`bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4 transition-all duration-1000 delay-700 ${getAnimationClass(
+                  'hero-content',
+                  'opacity-100 translate-y-0 animate-glow'
+                )}`}
+              >
                 <p className="text-gray-700">
-                  Say goodbye to scattered spreadsheets, missed follow-ups, and delayed updates. CareTrack brings <strong>case management, communication, and reporting</strong> together &mdash; so you can focus on what matters: delivering exceptional care to your clients. With Google Maps, WhatsApp, and Email integration, your team can <strong>work smarter, faster, and better.</strong>
+                  Say goodbye to scattered spreadsheets, missed follow-ups, and delayed updates. CareTrack brings
+                  <span className="text-violet-600 font-semibold"> case management, communication, and reporting </span>
+                  together &mdash; so you can focus on what matters: delivering exceptional care to your clients.
+                  With Google Maps, WhatsApp, and Email integration, your team can
+                  <span className="text-violet-700 font-bold"> work smarter, faster, and better.</span>
                 </p>
               </div>
 
               <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-1000 ${getAnimationClass('hero-content', 'opacity-100 translate-y-0')}`}>
                 <Link
                   href="/demo"
-                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl animate-pulse-button"
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl animate-pulse-button flex items-center justify-center"
                 >
-                  Request a Demo
+                  <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">
+                    Request a Demo
+                  </span>
                   <ArrowRight className="w-5 h-5 ml-2 inline-block group-hover:translate-x-2 transition-transform duration-300" />
                 </Link>
+
 
                 <Link
                   href="/signup"
                   className="group flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg border border-gray-300 hover:border-gray-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hover:bg-gray-50"
                 >
                   <Zap className="w-6 h-6 mr-3 text-blue-600 group-hover:text-purple-600 transition-colors duration-300" />
-                  Start Free Trial
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Start Free Trial
+                  </span>
                 </Link>
 
                 <Link
@@ -671,11 +710,14 @@ useEffect(() => {
                   className="flex items-center justify-center bg-gray-100 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg group"
                 >
                   <div className="relative">
-                    <Play className="w-5 h-5 mr-2 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                    <Play className="w-5 h-5 mr-2 text-blue-600 group-hover:text-purple-600 group-hover:scale-110 transition-all duration-300" />
                     <div className="absolute inset-0 bg-blue-600 rounded-full opacity-0 group-hover:opacity-20 group-hover:animate-ping"></div>
                   </div>
-                  Watch Demo
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Watch Demo
+                  </span>
                 </Link>
+
               </div>
             </div>
 
@@ -713,15 +755,15 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-8 h-8 text-gray-400" />
         </div>
       </section>
 
-      {/* Features Section */}
+      {/*----------------------------------------------FEATURES--------------------------------------- */}
+
       <section id="features" className="py-16 sm:py-20 bg-white relative">
-        {/* Section background decoration */}
+   
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-50 blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -731,7 +773,7 @@ useEffect(() => {
             id="features-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('features-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="relative inline-block text-center text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in">
+              <h2 className="relative inline-block text-center text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in group">
                 <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
                   Care
                 </span>
@@ -740,11 +782,8 @@ useEffect(() => {
                 </span>
                 <span className="text-gray-900"> Features</span>
 
-                {/* underline */}
                 <span className="absolute left-1/2 -bottom-1 h-[3px] w-0 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
-
-
 
               <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive tools designed to streamline your medical assistance operations.
@@ -834,7 +873,8 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Solutions Section */}
+      {/*----------------------------------------------SOLUTIONS--------------------------------------- */}
+
       <section id="solutions" className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 animate-float"></div>
@@ -847,7 +887,7 @@ useEffect(() => {
             id="solutions-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('solutions-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 group inline-block">
                 <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
                   Care
                 </span>
@@ -855,7 +895,9 @@ useEffect(() => {
                   Track
                 </span>
                 <span className="text-gray-900"> Solutions</span>
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
+
 
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Built to serve different types of medical assistance organizations with tailored solutions.
@@ -934,7 +976,7 @@ useEffect(() => {
             ))}
           </div>
 
-          {/* About/Mission Section */}
+          {/*-----------------------------------------------ABOUT---------------------------------------------- */}
           <div
             id='about'
             className="mt-16 sm:mt-20 bg-white/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50"
@@ -942,14 +984,17 @@ useEffect(() => {
           >
             <div className={`grid md:grid-cols-2 gap-8 sm:gap-12 items-center transition-all duration-1000 ${getAnimationClass('about', 'opacity-100 translate-y-0')}`}>
               <div>
-                <h3 className="text-3xl sm:text-4xl font-bold mb-4 animate-fade-in">
+                <h3 className="relative text-3xl sm:text-4xl font-bold mb-4 animate-fade-in group inline-block">
                   <span className="bg-gradient-to-r from-violet-500 to-pink-600 bg-clip-text text-transparent">
                     Our
                   </span>
                   <span className="ml-2 bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent">
                     Mission
                   </span>
+
+                  <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-violet-500 to-pink-700 transition-all duration-500 group-hover:w-full"></span>
                 </h3>
+
 
                 <p className="text-lg text-gray-600 mb-6 animate-fade-in-up delay-200">
                   To empower medical assistance companies worldwide with technology that simplifies operations, improves patient care, and reduces operational costs.
@@ -1030,8 +1075,10 @@ useEffect(() => {
                     alt="Medical assistance technology"
                     width={600}
                     height={400}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
+                    style={{ height: 'auto' }}
                   />
+
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-10 animate-pulse"></div>
@@ -1042,17 +1089,18 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/*-----------------------------------------------PRICING--------------------------------------- */}
+
       <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
-        {/* Background decorations */}
+   
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header */}
+      
           <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
             <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 group inline-block">
                 <span className="bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent">
                   Choose
                 </span>
@@ -1062,8 +1110,8 @@ useEffect(() => {
                 <span className="ml-2 text-gray-900">
                   Plan
                 </span>
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-violet-500 to-pink-700 transition-all duration-500 group-hover:w-full"></span>
               </h2>
-
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Select the perfect plan for your medical assistance operations. Upgrade or downgrade anytime.
               </p>
@@ -1157,7 +1205,7 @@ useEffect(() => {
                   </p>
                 </div>
 
-                {/* Link Button for Navigation to /signup */}
+            
                 <Link href={'/signup'}
                   className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${plan.popular
                     ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
@@ -1244,7 +1292,8 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/*-----------------------------------------------TESTIMONIALS--------------------------------------- */}
+
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         {/* Background animation */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-purple-100/20 animate-pulse"></div>
@@ -1256,19 +1305,19 @@ useEffect(() => {
             id="testimonials-header"
           >
             <div className="flex justify-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 flex flex-wrap justify-center text-center">
+              <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 flex flex-wrap justify-center text-center group">
                 {["What", "Our", "Clients", "Say"].map((word, index) => {
                   const colors = ["text-blue-500", "text-green-500", "text-purple-500", "text-red-500"];
                   return (
-                    <span
-                      key={index}
-                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
-                    >
+                    <span key={index} className={`${colors[index % colors.length]} mr-2`}>
                       {word}
                     </span>
                   );
                 })}
+
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-blue-5 to-red-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
+
             </div>
           </div>
 
@@ -1316,9 +1365,10 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/*-----------------------------------------------CTA-SECTION--------------------------------------- */}
+
       <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
-        {/* Animated background elements */}
+      
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-2 animate-slide-diagonal"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
 
@@ -1359,7 +1409,8 @@ useEffect(() => {
         <div className="absolute top-1/2 left-10 w-1 h-1 bg-white rounded-full opacity-80 animate-bounce"></div>
       </section>
 
-      {/* Advantages Section */}
+      {/*-----------------------------------------------ADVANTAGES--------------------------------------- */}
+
       <div className="py-16 sm:py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
@@ -1368,18 +1419,16 @@ useEffect(() => {
             id="advantages-header"
           >
             <div className={`transition-all duration-1000 ${getAnimationClass('advantages-header', 'opacity-100 translate-y-0')}`}>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 flex flex-wrap justify-center text-center">
+              <h3 className="relative inline-block text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 group">
                 {["CareTrack", "Advantages"].map((word, index) => {
                   const colors = ["text-blue-500", "text-green-500"]; // Different colors per word
                   return (
-                    <span
-                      key={index}
-                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
-                    >
+                    <span key={index} className={`${colors[index % colors.length]} mr-2`}>
                       {word}
                     </span>
                   );
                 })}
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-500 group-hover:w-full"></span>
               </h3>
 
               <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -1414,7 +1463,8 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Contact Section */}
+      {/*-----------------------------------------------CONTACT--------------------------------------- */}
+
       <section id="contact" className="py-16 sm:py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
         {/* Background decorations */}
         <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 animate-float"></div>
@@ -1427,19 +1477,18 @@ useEffect(() => {
               id="contact-info"
               className={`transition-all duration-1000 ${getAnimationClass('contact-info', 'opacity-100 translate-y-0')}`}
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 flex flex-wrap justify-center text-center animate-fade-in">
+              <h2 className="relative inline-block text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 animate-fade-in group">
                 {["Get", "In", "Touch"].map((word, index) => {
                   const colors = ["text-blue-500", "text-green-500", "text-purple-500"]; // Different colors
                   return (
-                    <span
-                      key={index}
-                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
-                    >
+                    <span key={index} className={`${colors[index % colors.length]} mr-2`}>
                       {word}
                     </span>
                   );
                 })}
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
+
               <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 animate-fade-in-up delay-300">
                 Have questions or need assistance? Our team is here to help you with any inquiries about CareTrack.
               </p>
@@ -1506,19 +1555,19 @@ useEffect(() => {
               id="contact-form"
               className={`bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${getAnimationClass('contact-form', 'opacity-100 translate-y-0')}`}
             >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-6 flex flex-wrap justify-center text-center">
+              <h3 className="relative inline-block text-xl sm:text-2xl font-semibold mb-6 group text-center">
                 {["Send", "us", "a", "message"].map((word, index) => {
                   const colors = ["text-blue-500", "text-green-500", "text-purple-500", "text-red-500"];
                   return (
-                    <span
-                      key={index}
-                      className={`${colors[index % colors.length]} mr-2 border-b-2 border-transparent hover:border-current cursor-pointer`}
-                    >
+                    <span key={index} className={`${colors[index % colors.length]} mr-2`}>
                       {word}
                     </span>
                   );
                 })}
+
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-blue-50 to-red-500 transition-all duration-500 group-hover:w-full"></span>
               </h3>
+
               <form className="space-y-4 sm:space-y-6">
                 {[
                   { id: "name", label: "Name", type: "text", placeholder: "Your name" },
@@ -1582,12 +1631,12 @@ useEffect(() => {
         </div>
       </section>
 
+      {/*-----------------------------------------------FOOTER--------------------------------------- */}
+
       <footer className="relative bg-gray-900 text-white overflow-hidden">
-        {/* Animated background layers */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-gray-900 to-purple-900/20"></div>
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"></div>
-          {/* Floating particles effect */}
           <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
           <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-purple-400/40 rounded-full animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-green-400/30 rounded-full animate-pulse delay-500"></div>
@@ -1595,7 +1644,7 @@ useEffect(() => {
 
         {/* Main footer content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          {/* Top section with logo and tagline */}
+      
           <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-4 mb-6 group">
               <div className="relative">
@@ -1607,14 +1656,14 @@ useEffect(() => {
                     className="h-16 w-auto object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      // Fallback to icon if logo doesn't load
+                      
                       target.style.display = 'none';
                       if (target.nextElementSibling) {
                         (target.nextElementSibling as HTMLElement).style.display = 'flex';
                       }
                     }}
                   />
-                  {/* Fallback icon (hidden by default) */}
+              
                   <div className="hidden w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl items-center justify-center">
                     <Heart className="w-8 h-8 text-white" fill="currentColor" />
                   </div>
@@ -1714,7 +1763,8 @@ useEffect(() => {
             ))}
           </div>
 
-          {/* Contact section */}
+          {/*-----------------------------------------------CONTACT-SECTION-------------------------------------- */}
+
           <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-2xl p-6 sm:p-8 mb-12 backdrop-blur-sm border border-gray-700/50">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="flex items-center space-x-4 group">
@@ -1840,114 +1890,10 @@ useEffect(() => {
           </div>
         </div>
       )}
-
-      {/* Custom Styles */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-10px) rotate(1deg); }
-          66% { transform: translateY(5px) rotate(-1deg); }
-        }
-        
-        @keyframes float-reverse {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(10px) rotate(-1deg); }
-          66% { transform: translateY(-5px) rotate(1deg); }
-        }
-        
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes gradient-x {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-          50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
-        }
-        
-        @keyframes pulse-button {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-          50% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-        }
-        
-        @keyframes slide-down {
-          0% { opacity: 0; transform: translateY(-10px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-right {
-          0% { opacity: 0; transform: translateX(-20px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-        
-        @keyframes fade-in-up {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes scale-in {
-          0% { opacity: 0; transform: scale(0.9); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes bounce-in {
-          0% { opacity: 0; transform: scale(0.3); }
-          50% { opacity: 1; transform: scale(1.05); }
-          70% { transform: scale(0.9); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        @keyframes slide-diagonal {
-          0% { transform: translateX(-100%) skewY(-2deg); }
-          100% { transform: translateX(100%) skewY(-2deg); }
-        }
-        
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-reverse { animation: float-reverse 8s ease-in-out infinite; }
-        .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
-        .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 3s ease infinite; }
-        .animate-glow { animation: glow 2s ease-in-out infinite; }
-        .animate-pulse-button { animation: pulse-button 2s infinite; }
-        .animate-slide-down { animation: slide-down 0.5s ease-out; }
-        .animate-slide-right { animation: slide-right 0.5s ease-out; }
-        .animate-fade-in { animation: fade-in 1s ease-out; }
-        .animate-fade-in-up { animation: fade-in-up 1s ease-out; }
-        .animate-scale-in { animation: scale-in 0.3s ease-out; }
-        .animate-bounce-in { animation: bounce-in 0.6s ease-out; }
-        .animate-shimmer { animation: shimmer 2s linear infinite; }
-        .animate-slide-diagonal { animation: slide-diagonal 10s linear infinite; }
-        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
-        
-        .bg-size-200 { background-size: 200% auto; }
-        .hover\\:scale-102:hover { transform: scale(1.02); }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-700 { animation-delay: 0.7s; }
-        .delay-1000 { animation-delay: 1s; }
-      `}</style>
     </div>
+
+
+
   );
 };
 
