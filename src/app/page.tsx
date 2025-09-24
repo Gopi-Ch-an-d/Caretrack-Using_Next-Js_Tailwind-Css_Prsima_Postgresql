@@ -463,12 +463,12 @@ const CareTrackApp = () => {
                     }`}
                 >
                   {item.label}
-                  
+
                   <span
                     className={`absolute -top-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                   ></span>
-                  
+
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
@@ -539,12 +539,12 @@ const CareTrackApp = () => {
                     }}
                   >
                     {item.label}
-                  
+
                     <span
                       className={`absolute top-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
                         }`}
                     ></span>
-                    
+
                     <span
                       className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${activeSection === item.id ? 'opacity-100' : 'opacity-0'
                         }`}
@@ -575,7 +575,7 @@ const CareTrackApp = () => {
         <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-full opacity-25 animate-float-reverse"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:py-24 relative z-10">
-        
+
           <div
             className="flex justify-center mb-8"
             data-animate
@@ -763,7 +763,7 @@ const CareTrackApp = () => {
       {/*----------------------------------------------FEATURES--------------------------------------- */}
 
       <section id="features" className="py-16 sm:py-20 bg-white relative">
-   
+
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-50 blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1092,12 +1092,12 @@ const CareTrackApp = () => {
       {/*-----------------------------------------------PRICING--------------------------------------- */}
 
       <section id="pricing" className="py-12 sm:py-16 bg-white relative overflow-hidden">
-   
+
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-bounce"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-40 blur-3xl animate-pulse"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      
+
           <div className="text-center mb-8 sm:mb-10" data-animate id="pricing-header">
             <div className={`transition-all duration-1000 ${getAnimationClass('pricing-header', 'opacity-100 translate-y-0')}`}>
               <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 group inline-block">
@@ -1205,7 +1205,7 @@ const CareTrackApp = () => {
                   </p>
                 </div>
 
-            
+
                 <Link href={'/signup'}
                   className={`block w-full py-2 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base relative overflow-hidden group/button text-center no-underline ${plan.popular
                     ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg`
@@ -1305,7 +1305,7 @@ const CareTrackApp = () => {
             id="testimonials-header"
           >
             <div className="flex justify-center">
-              <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 flex flex-wrap justify-center text-center group">
+              <h2 className="relative inline-block text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 group">
                 {["What", "Our", "Clients", "Say"].map((word, index) => {
                   const colors = ["text-blue-500", "text-green-500", "text-purple-500", "text-red-500"];
                   return (
@@ -1315,7 +1315,8 @@ const CareTrackApp = () => {
                   );
                 })}
 
-                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-blue-5 to-red-500 transition-all duration-500 group-hover:w-full"></span>
+                {/* underline spanning only the text */}
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-blue-500 via-green-500 to-red-500 transition-all duration-500 group-hover:w-full"></span>
               </h2>
 
             </div>
@@ -1368,7 +1369,7 @@ const CareTrackApp = () => {
       {/*-----------------------------------------------CTA-SECTION--------------------------------------- */}
 
       <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
-      
+
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-2 animate-slide-diagonal"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
 
@@ -1644,7 +1645,7 @@ const CareTrackApp = () => {
 
         {/* Main footer content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      
+
           <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-4 mb-6 group">
               <div className="relative">
@@ -1656,14 +1657,14 @@ const CareTrackApp = () => {
                     className="h-16 w-auto object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      
+
                       target.style.display = 'none';
                       if (target.nextElementSibling) {
                         (target.nextElementSibling as HTMLElement).style.display = 'flex';
                       }
                     }}
                   />
-              
+
                   <div className="hidden w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl items-center justify-center">
                     <Heart className="w-8 h-8 text-white" fill="currentColor" />
                   </div>
