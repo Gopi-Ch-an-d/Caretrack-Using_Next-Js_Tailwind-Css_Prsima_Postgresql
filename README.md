@@ -1,7 +1,7 @@
 # 🏥 CareTrack
 
 A full-stack **Medical Case Management System** for **medical assistance companies**, built with **Next.js**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **PostgreSQL**.  
-CareTrack allows staff to manage cases, track patient information, streamline workflows, and monitor progress — all through an intuitive dashboard.
+CareTrack allows staff to manage cases, track patient information, streamline workflows, and monitor progress.
 
 ---
 
