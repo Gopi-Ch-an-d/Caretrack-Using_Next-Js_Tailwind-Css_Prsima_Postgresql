@@ -10,6 +10,7 @@ import CTASection from '@/components/CtaSection';
 import PricingSection from '@/components/PricingSection';
 import SolutionsSection from '@/components/SolutionSection';
 import Navigation from '@/components/navigation';
+import TeamComponent from '@/components/TeamSection';
 
 export default function CareTrackApp() {
   const [activeSection, setActiveSection] = useState('home');
@@ -118,6 +119,7 @@ export default function CareTrackApp() {
       <FeaturesSection getAnimationClass={getAnimationClass} />
       <SolutionsSection getAnimationClass={getAnimationClass} />
       <PricingSection getAnimationClass={getAnimationClass} />
+      <TeamComponent/>
       <TestimonialsSection getAnimationClass={getAnimationClass} />
       <CTASection getAnimationClass={getAnimationClass} />
       <AdvantagesSection getAnimationClass={getAnimationClass} />

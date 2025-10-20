@@ -12,7 +12,9 @@ const nextConfig = {
       'www.tdk.com',
       'cdn.prod.website-files.com',
       'www.ncfp.org',
-      'media.istockphoto.com'
+      'static9.depositphotos.com',
+      'plus.unsplash.com',
+      'media.licdn.com'
     ],
   },
 };

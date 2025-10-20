@@ -92,9 +92,6 @@ const Navigation = ({ activeSection, scrolled, smoothScroll }: NavigationProps) 
 
                 <span className="relative z-10 text-white flex items-center gap-2">
                   Login
-                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
                 </span>
               </Link>
             </div>
@@ -167,9 +164,6 @@ const Navigation = ({ activeSection, scrolled, smoothScroll }: NavigationProps) 
                     <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-[length:200%_100%] animate-gradient" />
                     <span className="relative z-10 flex items-center gap-2">
                       Login
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
                     </span>
                   </Link>
                 </div>
