@@ -11,7 +11,8 @@ const nextConfig = {
       'thumbs.dreamstime.com',
       'www.tdk.com',
       'cdn.prod.website-files.com',
-      'www.ncfp.org'
+      'www.ncfp.org',
+      'media.istockphoto.com'
     ],
   },
 };
