@@ -53,7 +53,7 @@ export interface SolutionItem {
 }
 
 export interface StatItem {
-  icon: any;
+  icon: JSX.Element;
   label: string;
   value: string;
 }
