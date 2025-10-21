@@ -111,7 +111,7 @@ const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
           {solutions.map((solution, index) => (
             <div
               key={index}
-              className={`bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform will-change-transform group ${solution.hoverColor
+              className={`bg-slate-500 border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform will-change-transform group ${solution.hoverColor
                 } ${isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-12'
@@ -123,17 +123,17 @@ const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
               <div className={`w-12 h-12 bg-gradient-to-br ${solution.gradient} rounded-xl flex items-center justify-center mb-4 will-change-transform transition-all duration-300 ease-out group-hover:scale-110 group-hover:rotate-3`}>
                 {solution.icon}
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 transition-colors duration-300 ease-out group-hover:text-blue-600">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 transition-colors duration-300 ease-out group-hover:text-blue-600">
                 {solution.title}
               </h3>
-              <p className="text-gray-600 mb-4 transition-colors duration-300 ease-out group-hover:text-gray-700">
+              <p className="text-cyan-400 mb-4 transition-colors duration-300 ease-out group-hover:text-gray-700">
                 {solution.description}
               </p>
               <ul className="space-y-2">
                 {solution.features.map((feature, featureIndex) => (
                   <li
                     key={featureIndex}
-                    className="flex items-center text-sm text-gray-600 group/item"
+                    className="flex items-center text-sm text-white group/item"
                   >
                     <Check className="w-4 h-4 text-green-500 mr-2 transition-transform duration-300 ease-out group-hover/item:scale-110" />
                     <span className="transition-colors duration-300 ease-out group-hover/item:text-gray-700">{feature}</span>
