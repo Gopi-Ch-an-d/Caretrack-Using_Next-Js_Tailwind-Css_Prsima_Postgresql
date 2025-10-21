@@ -36,15 +36,19 @@ const HeroSection = ({ getAnimationClass }: HeroSectionProps) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16 sm:pb-20 lg:py-24 relative z-10 w-full">
         {/* Badge - Improved mobile spacing */}
-        <div className="flex justify-center mb-6 sm:mb-8 px-4" data-animate id="hero-badge">
+        <div
+          className="flex justify-center mb-4 sm:mb-8 px-2 sm:px-4 relative z-20 mt-16 sm:mt-0"
+          data-animate
+          id="hero-badge"
+        >
           <div
-            className={`inline-flex items-center justify-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-purple-200 shadow-sm transition-all duration-1000 max-w-full ${getAnimationClass(
+            className={`inline-flex flex-wrap items-center justify-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-purple-200 shadow-sm transition-all duration-1000 w-fit max-w-[90%] sm:max-w-full ${getAnimationClass(
               'hero-badge',
               'animate-slide-down opacity-100 translate-y-0'
             )}`}
           >
             <div className="w-2 h-2 bg-green-500 rounded-full animate-ping flex-shrink-0"></div>
-            <span className="text-xs sm:text-sm font-semibold text-gray-800 text-center">
+            <span className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 text-center">
               Trusted by Medical Assistance Companies Worldwide
             </span>
             <motion.div
@@ -53,7 +57,7 @@ const HeroSection = ({ getAnimationClass }: HeroSectionProps) => {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "linear",
+                ease: 'linear',
               }}
               className="flex-shrink-0"
             >
@@ -61,6 +65,7 @@ const HeroSection = ({ getAnimationClass }: HeroSectionProps) => {
             </motion.div>
           </div>
         </div>
+
 
 
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
