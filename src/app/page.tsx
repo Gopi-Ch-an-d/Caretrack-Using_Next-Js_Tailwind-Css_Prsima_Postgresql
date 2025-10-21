@@ -11,6 +11,7 @@ import PricingSection from '@/components/PricingSection';
 import SolutionsSection from '@/components/SolutionSection';
 import Navigation from '@/components/navigation';
 import TeamComponent from '@/components/TeamSection';
+import WhatsAppButton from '@/components/Whatsap';
 
 export default function CareTrackApp() {
   const [activeSection, setActiveSection] = useState('home');
@@ -117,11 +118,13 @@ export default function CareTrackApp() {
 
       <HeroSection getAnimationClass={getAnimationClass} />
       <FeaturesSection getAnimationClass={getAnimationClass} />
+      <WhatsAppButton/>
       <SolutionsSection getAnimationClass={getAnimationClass} />
       <PricingSection getAnimationClass={getAnimationClass} />
       <TeamComponent/>
       <TestimonialsSection getAnimationClass={getAnimationClass} />
       <CTASection getAnimationClass={getAnimationClass} />
+     
       <AdvantagesSection getAnimationClass={getAnimationClass} />
       <ContactSection getAnimationClass={getAnimationClass} />
       <Footer />

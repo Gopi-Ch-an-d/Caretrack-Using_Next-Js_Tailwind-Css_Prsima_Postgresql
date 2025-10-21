@@ -3,11 +3,122 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Heart, DollarSign, Shield, Check, ArrowRight, Sparkles } from 'lucide-react';
-import { url } from 'inspector';
 
 interface SolutionsSectionProps {
   getAnimationClass: (elementId: string, animationType: string) => string;
 }
+
+const MissionTypewriter = () => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  
+  const fullText = "To empower medical assistance companies worldwide with technology that simplifies operations, improves patient care, and reduces operational costs.";
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    let typingInterval: NodeJS.Timeout;
+    let deletingTimeout: NodeJS.Timeout;
+    
+    const typeText = () => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTyping(false);
+        
+        // Wait 3 seconds before starting to delete
+        deletingTimeout = setTimeout(() => {
+          const deleteText = () => {
+            if (currentIndex >= 0) {
+              setDisplayedText(fullText.slice(0, currentIndex));
+              currentIndex--;
+            } else {
+              clearInterval(typingInterval);
+              // Wait 1 second before restarting
+              setTimeout(() => {
+                currentIndex = 0;
+                setIsTyping(true);
+                typingInterval = setInterval(typeText, 35);
+              }, 1000);
+            }
+          };
+          
+          typingInterval = setInterval(deleteText, 25);
+        }, 3000);
+      }
+    };
+    
+    typingInterval = setInterval(typeText, 35);
+    
+    return () => {
+      clearInterval(typingInterval);
+      clearTimeout(deletingTimeout);
+    };
+  }, []);
+  
+  return (
+    <p className="text-lg text-gray-600 mb-6 min-h-[72px]">
+      {displayedText}
+      <span className={`inline-block w-0.5 h-5 bg-blue-600 ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
+    </p>
+  );
+};
+
+const FeatureTypewriter = ({ description }: { description: string }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    let typingInterval: NodeJS.Timeout;
+    let deletingTimeout: NodeJS.Timeout;
+    
+    const typeText = () => {
+      if (currentIndex <= description.length) {
+        setDisplayedText(description.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTyping(false);
+        
+        // Wait 2.5 seconds before starting to delete
+        deletingTimeout = setTimeout(() => {
+          const deleteText = () => {
+            if (currentIndex >= 0) {
+              setDisplayedText(description.slice(0, currentIndex));
+              currentIndex--;
+            } else {
+              clearInterval(typingInterval);
+              // Wait 800ms before restarting
+              setTimeout(() => {
+                currentIndex = 0;
+                setIsTyping(true);
+                typingInterval = setInterval(typeText, 40);
+              }, 800);
+            }
+          };
+          
+          typingInterval = setInterval(deleteText, 30);
+        }, 2500);
+      }
+    };
+    
+    typingInterval = setInterval(typeText, 40);
+    
+    return () => {
+      clearInterval(typingInterval);
+      clearTimeout(deletingTimeout);
+    };
+  }, [description]);
+  
+  return (
+    <p className="text-gray-600 transition-colors duration-300 ease-out group-hover/mission:text-gray-700 min-h-[48px]">
+      {displayedText}
+      <span className={`inline-block w-0.5 h-4 bg-purple-500 ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
+    </p>
+  );
+};
 
 const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
   const [showMissionInfo, setShowMissionInfo] = useState(false);
@@ -155,7 +266,7 @@ const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: 'rgba(255, 255, 255, 0.6)' // optional overlay for readability
+            backgroundColor: 'rgba(255, 255, 255, 0.6)'
           }}
         >
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
@@ -170,9 +281,7 @@ const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
                 <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-violet-500 to-pink-700 transition-all duration-500 ease-out group-hover:w-full"></span>
               </h3>
 
-              <p className="text-lg text-gray-600 mb-6">
-                To empower medical assistance companies worldwide with technology that simplifies operations, improves patient care, and reduces operational costs.
-              </p>
+              <MissionTypewriter />
 
               <div className="space-y-4">
                 {[
@@ -194,13 +303,11 @@ const SolutionsSection = ({ getAnimationClass }: SolutionsSectionProps) => {
                     className="flex items-start space-x-3 group/mission"
                   >
                     <Check className="w-5 h-5 text-green-500 mt-1 transition-transform duration-300 ease-out group-hover/mission:scale-110" />
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 transition-colors duration-300 ease-out group-hover/mission:text-blue-600">
                         {item.title}
                       </h4>
-                      <p className="text-gray-600 transition-colors duration-300 ease-out group-hover/mission:text-gray-700">
-                        {item.description}
-                      </p>
+                      <FeatureTypewriter description={item.description} />
                     </div>
                   </div>
                 ))}

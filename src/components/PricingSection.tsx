@@ -80,11 +80,11 @@ const PricingSection = ({ getAnimationClass }: PricingSectionProps) => {
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4 group-hover/card:text-blue-400 transition-colors duration-300">
                     {plan.name}
                   </h3>
-                  <div className="mb-3 sm:mb-4">
-                    <span className="text-4xl sm:text-5xl font-bold text-white">
+                  <div className="mb-3 sm:mb-4 relative">
+                    <span className="text-4xl sm:text-5xl font-bold text-white inline-block animate-price-dance group-hover/card:animate-price-bounce">
                       {plan.price}
                     </span>
-                    <span className="text-slate-400 ml-2">{plan.period}</span>
+                    <span className="text-slate-400 ml-2 animate-pulse">{plan.period}</span>
                   </div>
                   <p className="text-slate-400 group-hover/card:text-slate-300 transition-colors duration-300">
                     {plan.description}
@@ -224,6 +224,44 @@ const PricingSection = ({ getAnimationClass }: PricingSectionProps) => {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+
+        @keyframes priceDance {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          25% {
+            transform: translateY(-5px) scale(1.05);
+          }
+          50% {
+            transform: translateY(0) scale(1);
+          }
+          75% {
+            transform: translateY(-3px) scale(1.02);
+          }
+        }
+
+        @keyframes priceBounce {
+          0%, 100% {
+            transform: translateY(0) scale(1) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-10px) scale(1.1) rotate(-3deg);
+          }
+          50% {
+            transform: translateY(0) scale(1.05) rotate(0deg);
+          }
+          75% {
+            transform: translateY(-5px) scale(1.08) rotate(3deg);
+          }
+        }
+
+        .animate-price-dance {
+          animation: priceDance 2s ease-in-out infinite;
+        }
+
+        .animate-price-bounce {
+          animation: priceBounce 0.6s ease-in-out;
         }
       `}</style>
     </section>
