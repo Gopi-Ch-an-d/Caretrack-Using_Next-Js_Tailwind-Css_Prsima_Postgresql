@@ -1,4 +1,3 @@
-// components/Footer.tsx
 'use client';
 
 import { Heart, Users, Shield, TrendingUp, ChevronRight, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
