@@ -14,7 +14,14 @@ const nextConfig = {
       'www.ncfp.org',
       'static9.depositphotos.com',
       'plus.unsplash.com',
-      'media.licdn.com'
+      'media.licdn.com',
+      'res.cloudinary.com',
+      'encrypted-tbn0.gstatic.com',
+      'm.media-amazon.com',
+      'icccad.net',
+      'static.clubs.nfl.com',
+      'images.news18.com',
+      'harvardtechnologyreview.com',
     ],
   },
 };
